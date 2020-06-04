@@ -1,329 +1,165 @@
 <!DOCTYPE html>
-
 <html>
-
   <head>
-
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-
-    
-
 	<title>Générateur de Référence Bibliographique</title>
-
 </head>
-
   <body>     
-
 <script type="text/javascript">
 
-
-
-//localStorage.clear();
-
+	//localStorage.clear();
 //------------------------------------------------------ 	
-
 //Constantes
-
 	var virgule = ", "; //var virgule = virgule.fontcolor("red");
-
 	var point = ". "; //var point = point.fontcolor("red");
-
 	var pdebut = "p. ";	//var pdebut = pdebut.fontcolor("red");
-
 	var n = "n° "; //var n = n.fontcolor("red");
-
 	var dans = " In : "; //var dans = dans.fontcolor("red");
-
 	var consult = " Consulté le : ";
-
 	var dispo = "Disponible à "; //var dispo = dispo.fontcolor("red");
-
 	var entretien = "Entretien avec "; //var entretien = entretien.fontcolor("red");
-
 	var realise = "Réalisé le "; //var realise = realise.fontcolor("red");
-
 	var enligne = " [En ligne]"; //var enligne = enligne.fontcolor("red");
-
 	var separ8 = "\"";
-
 	var pfin = " p."; //var pfin = pfin.fontcolor("red");
-
 	var crochet1 = " ["; //var crochet1 = crochet1.fontcolor("red");
-
 	var crochet2 = "]";	//var crochet2 = crochet2.fontcolor("red");
-
 	var parenthese1 = " (";	//var parenthese1 = parenthese1.fontcolor("red");
-
 	var parenthese2 = ")"; //var parenthese2 = parenthese2.fontcolor("red");
-
 	var abonnement = "[accès par abonnement]"
-
 	var univ = "Encyclopédie Universalis"
-
 	var urluniv = "www.universalis-edu.com";
-
 	var urleurop = "www.europresse.com";
-
 	var urlyoutube="www.youtube.com";
-
 	var carte = "carte n° ";
-
 	var carte = carte.fontcolor("red");
-
 	var ISBNEAN = " ISBN/EAN : ";	
-
 	var chaine = "";
-
 	var nom = "";
-
 	var debut = "";
-
 //------------------------------------------------------ 
-
 // Déclaration des clés 
-
 	//if (typeof clelivre != "undefined") {localStorage.setItem(clelivre, localStorage.getItem(clelivre0));} else {localStorage.setItem("clelivre", '0');}
-
 	//if (typeof clelivrea != "undefined") {localStorage.setItem(clelivrea, localStorage.getItem(clelivrea0));} else {localStorage.setItem("clelivrea", '0');}
-
 	var clelivre = "clelivre"; localStorage.setItem(clelivre, '0');
-
 	var clelivrea = "clelivrea"; localStorage.setItem(clelivrea, '0');
-
 	var cleperiod = "cleperiod"; localStorage.setItem(cleperiod, '0');
-
 	var cleperioda = "cleperioda"; localStorage.setItem(cleperioda, '0');
-
 	var cleweb = "cleweb"; localStorage.setItem(cleweb, '0');
-
 	var cleweba = "cleweba"; localStorage.setItem(cleweba, '0');
-
 	var cleill = "cleill"; localStorage.setItem(cleill, '0');
-
 	var cleilla = "cleilla"; localStorage.setItem(cleilla, '0');
-
 	var clevid = "clevid"; localStorage.setItem(clevid, '0');
-
 	var clevida = "clevida"; localStorage.setItem(clevida, '0');
-
 	var clemus = "clemus"; localStorage.setItem(clemus, '0');
-
 	var clemusa = "clemusa"; localStorage.setItem(clemusa, '0');
-
 	var cledocref = "cledocref"; localStorage.setItem(cledocref, '0');
-
 	var cledocrefa = "cledocrefa"; localStorage.setItem(cledocrefa, '0');
-
 	var cleint = "cleint"; localStorage.setItem(cleint, '0');
-
 	var cleinta = "cleinta"; localStorage.setItem(cleinta, '0');
-
 	var clecarte = "clecarte"; localStorage.setItem(clecarte, '0');
-
 	var clecartea = "clecartea"; localStorage.setItem(clecartea, '0');
-
 	var cledebutcartea = "cledebutcartea"; localStorage.setItem(cledebutcartea, '0');
-
 	//Clés NOM d'auteur
-
 	var clenomlivrea = "clenomlivrea"; localStorage.setItem(clenomlivrea, '0');
-
 	var clenomperioda = "clenomperioda"; localStorage.setItem(clenomperioda, '0');
-
 	var clenomweba = "clenomweba"; localStorage.setItem(clenomweba, '0');
-
 	var clenomilla = "clenomilla"; localStorage.setItem(clenomilla, '0');
-
 	var clenomvida = "clenomvida"; localStorage.setItem(clenomvida, '0');
-
 	var clenommusa = "clenommusa"; localStorage.setItem(clenommusa, '0');
-
 	var clenomdocrefa = "clenomdocrefa"; localStorage.setItem(clenomdocrefa, '0');
-
 	var clenominta = "clenominta"; localStorage.setItem(clenominta, '0');
-
 	var clenomcartea = "clenomcartea"; localStorage.setItem(clenomcartea, '0');
-
 	var testnom = "testnom"; localStorage.setItem(testnom, '0');
-
 	//Clés  début NOM d'auteur
-
 	var cledebutlivrea = "cledebutlivrea"; localStorage.setItem(cledebutlivrea, '0');
-
 	var cledebutperioda = "cledebutperioda"; localStorage.setItem(cledebutperioda, '0');
-
 	var cledebutweba = "cledebutweba"; localStorage.setItem(cledebutweba, '0');
-
 	var cledebutilla = "cledebutilla"; localStorage.setItem(cledebutilla, '0');
-
 	var cledebutvida = "cledebutvida"; localStorage.setItem(cledebutvida, '0');
-
 	var cledebutmusa = "cledebutmusa"; localStorage.setItem(cledebutmusa, '0');
-
 	var cledebutdocrefa = "cledebutdocrefa"; localStorage.setItem(cledebutdocrefa, '0');
-
 	var cledebutinta = "cledebutinta"; localStorage.setItem(cledebutinta, '0');
-
 	//Clés Titre du document
-
 	var cletitre = "cletitre"; var clearticle = "clearticle"; var cletitreweb = "cletitreweb"; var cletitrei = "cletitrei";
-
 	var cledocrefer = "cledocrefer"; var clecartesa = "clecartesa"; var cleintersa = "cleintersa";
 
-	
-
 	var affbibli = "affbibli"; localStorage.setItem(affbibli, '0');
-
 	var aff = 0;
 
-
-
 //------------------------------------------------------ 
-
 //fonction tri par colonne d'un tableau
-
 function TriParCol(arr, colIndex) {
-
         function Tri(a, b)
-
          {
-
 			a = a[colIndex]
-
 			b = b[colIndex]
-
 			return (a === b) ? 0 : (a<b) ? -1 : 1
-
 			}
-
         arr.sort(Tri);
-
 		}
-
 //------------------------------------------------------ 
-
 //Fonction enlever les caractères accentués
-
 String.prototype.SansAccent = function(){
-
     var accent = [
-
         /[\300-\306]/g, /[\340-\346]/g, // A, a
-
         /[\310-\313]/g, /[\350-\353]/g, // E, e
-
         /[\314-\317]/g, /[\354-\357]/g, // I, i
-
         /[\322-\330]/g, /[\362-\370]/g, // O, o
-
         /[\331-\334]/g, /[\371-\374]/g, // U, u
-
         /[\321]/g, /[\361]/g, // N, n
-
         /[\307]/g, /[\347]/g, ]; // C, c  
-
     var noaccent = ['A','a','E','e','I','i','O','o','U','u','N','n','C','c'];
-
     var str = this;
-
     for(var i = 0; i < accent.length; i++){
-
         str = str.replace(accent[i], noaccent[i]);
-
     } return str; }
-
 //------------------------------------------------------ 
-
 // Test auteur
-
 function TestAuteur () 
-
 {
-
 	//enlever les espaces du début
-
 	var nomauteur = JSON.parse(localStorage.getItem(testnom));
-
 	var nomauteur = nomauteur.trim();
-
 	//variables début auteur
-
 	var testauteur2 = nomauteur.substring(0,2);
-
 	var testauteur3 = nomauteur.substring(0,3);
-
 	var testauteur4 = nomauteur.substring(0,4);
-
 	var testauteur6 = nomauteur.substring(0,6);
-
 	//enlever les articles devant le nom d'auteur, isoler début auteur entre ()		
-
 	if (nomauteur.trim() == "") {var ref1 = ref1; var debutauteur ="";}
-
 	else {	
-
 		if (testauteur6 == "DE LA ") 
-
 			{ var debutauteur= "(DE LA) "; var nomauteur = nomauteur.replace(testauteur6,"")	}
-
 		else if (testauteur3 == "LA ") 
-
 			{ var debutauteur = "(LA) "; var nomauteur = nomauteur.replace(testauteur3,"")	}
-
 		else if (testauteur3 == "LE ") 
-
 			{ var debutauteur = "(LE) "; var nomauteur = nomauteur.replace(testauteur3,"")	}
-
 		else if (testauteur3 == "L' ") 
-
 			{ var debutauteur = "(L')"; var nomauteur = nomauteur.replace(testauteur3,"")		}
-
 		else if (testauteur3 == "DE ") 
-
 			{ var debutauteur = "(DE) "; var nomauteur = nomauteur.replace(testauteur3,"")	}
-
 		else if (testauteur3 == "D' ")
-
 			{ var debutauteur = "(D')"; var nomauteur = nomauteur.replace(testauteur3,"")		}
-
 		else if (testauteur3 == "DU ")
-
 			{ var debutauteur = "(DU) "; var nomauteur = nomauteur.replace(testauteur3,"")	}
-
 		else if (testauteur4 == "LES ")
-
 			{ var debutauteur = "(LES) "; var nomauteur = nomauteur.replace(testauteur4,"") 	}
-
 		else if	(testauteur4 == "DES ") 		
-
 			{ var debutauteur = "(DES) "; var nomauteur = nomauteur.replace(testauteur4,"") 	}
-
 		else if (testauteur2 == "L'")
-
 			{ var debutauteur = "(L')"; var nomauteur = nomauteur.replace(testauteur2,"")		}
-
 		else if (testauteur2 == "D'")
-
 			{ var debutauteur = "(D')"; var nomauteur = nomauteur.replace(testauteur2,"")		}
-
 		else { var nomauteur = nomauteur ; var debutauteur = "NON" ; 	}		
-
 		}; 	
-
 //retourner un tableau à 2 valeurs
-
 	var nom = nomauteur;
-
 	var debut = debutauteur;
-
 	return {nom:nomauteur, debut:debutauteur};
-
 }
-
 //------------------------------------------------------ 
-
 // Création de la bibliographie
-
 function Bibliographie() 
 
 {
