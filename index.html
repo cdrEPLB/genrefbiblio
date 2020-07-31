@@ -1,166 +1,329 @@
 <!DOCTYPE html>
+
 <html>
+
   <head>
+
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+
+    
+
 	<title>Générateur de Référence Bibliographique</title>
+
 </head>
+
   <body>     
-	
+
 <script type="text/javascript">
 
-	//localStorage.clear();
+
+
+//localStorage.clear();
+
 //------------------------------------------------------ 	
+
 //Constantes
+
 	var virgule = ", "; //var virgule = virgule.fontcolor("red");
+
 	var point = ". "; //var point = point.fontcolor("red");
+
 	var pdebut = "p. ";	//var pdebut = pdebut.fontcolor("red");
+
 	var n = "n° "; //var n = n.fontcolor("red");
+
 	var dans = " In : "; //var dans = dans.fontcolor("red");
+
 	var consult = " Consulté le : ";
+
 	var dispo = "Disponible à "; //var dispo = dispo.fontcolor("red");
+
 	var entretien = "Entretien avec "; //var entretien = entretien.fontcolor("red");
+
 	var realise = "Réalisé le "; //var realise = realise.fontcolor("red");
+
 	var enligne = " [En ligne]"; //var enligne = enligne.fontcolor("red");
+
 	var separ8 = "\"";
+
 	var pfin = " p."; //var pfin = pfin.fontcolor("red");
+
 	var crochet1 = " ["; //var crochet1 = crochet1.fontcolor("red");
+
 	var crochet2 = "]";	//var crochet2 = crochet2.fontcolor("red");
+
 	var parenthese1 = " (";	//var parenthese1 = parenthese1.fontcolor("red");
+
 	var parenthese2 = ")"; //var parenthese2 = parenthese2.fontcolor("red");
+
 	var abonnement = "[accès par abonnement]"
+
 	var univ = "Encyclopédie Universalis"
+
 	var urluniv = "www.universalis-edu.com";
+
 	var urleurop = "www.europresse.com";
+
 	var urlyoutube="www.youtube.com";
+
 	var carte = "carte n° ";
+
 	var carte = carte.fontcolor("red");
+
 	var ISBNEAN = " ISBN/EAN : ";	
+
 	var chaine = "";
+
 	var nom = "";
+
 	var debut = "";
+
 //------------------------------------------------------ 
+
 // Déclaration des clés 
+
 	//if (typeof clelivre != "undefined") {localStorage.setItem(clelivre, localStorage.getItem(clelivre0));} else {localStorage.setItem("clelivre", '0');}
+
 	//if (typeof clelivrea != "undefined") {localStorage.setItem(clelivrea, localStorage.getItem(clelivrea0));} else {localStorage.setItem("clelivrea", '0');}
+
 	var clelivre = "clelivre"; localStorage.setItem(clelivre, '0');
+
 	var clelivrea = "clelivrea"; localStorage.setItem(clelivrea, '0');
+
 	var cleperiod = "cleperiod"; localStorage.setItem(cleperiod, '0');
+
 	var cleperioda = "cleperioda"; localStorage.setItem(cleperioda, '0');
+
 	var cleweb = "cleweb"; localStorage.setItem(cleweb, '0');
+
 	var cleweba = "cleweba"; localStorage.setItem(cleweba, '0');
+
 	var cleill = "cleill"; localStorage.setItem(cleill, '0');
+
 	var cleilla = "cleilla"; localStorage.setItem(cleilla, '0');
+
 	var clevid = "clevid"; localStorage.setItem(clevid, '0');
+
 	var clevida = "clevida"; localStorage.setItem(clevida, '0');
+
 	var clemus = "clemus"; localStorage.setItem(clemus, '0');
+
 	var clemusa = "clemusa"; localStorage.setItem(clemusa, '0');
+
 	var cledocref = "cledocref"; localStorage.setItem(cledocref, '0');
+
 	var cledocrefa = "cledocrefa"; localStorage.setItem(cledocrefa, '0');
+
 	var cleint = "cleint"; localStorage.setItem(cleint, '0');
+
 	var cleinta = "cleinta"; localStorage.setItem(cleinta, '0');
+
 	var clecarte = "clecarte"; localStorage.setItem(clecarte, '0');
+
 	var clecartea = "clecartea"; localStorage.setItem(clecartea, '0');
+
 	var cledebutcartea = "cledebutcartea"; localStorage.setItem(cledebutcartea, '0');
+
 	//Clés NOM d'auteur
+
 	var clenomlivrea = "clenomlivrea"; localStorage.setItem(clenomlivrea, '0');
+
 	var clenomperioda = "clenomperioda"; localStorage.setItem(clenomperioda, '0');
+
 	var clenomweba = "clenomweba"; localStorage.setItem(clenomweba, '0');
+
 	var clenomilla = "clenomilla"; localStorage.setItem(clenomilla, '0');
+
 	var clenomvida = "clenomvida"; localStorage.setItem(clenomvida, '0');
+
 	var clenommusa = "clenommusa"; localStorage.setItem(clenommusa, '0');
+
 	var clenomdocrefa = "clenomdocrefa"; localStorage.setItem(clenomdocrefa, '0');
+
 	var clenominta = "clenominta"; localStorage.setItem(clenominta, '0');
+
 	var clenomcartea = "clenomcartea"; localStorage.setItem(clenomcartea, '0');
+
 	var testnom = "testnom"; localStorage.setItem(testnom, '0');
+
 	//Clés  début NOM d'auteur
+
 	var cledebutlivrea = "cledebutlivrea"; localStorage.setItem(cledebutlivrea, '0');
+
 	var cledebutperioda = "cledebutperioda"; localStorage.setItem(cledebutperioda, '0');
+
 	var cledebutweba = "cledebutweba"; localStorage.setItem(cledebutweba, '0');
+
 	var cledebutilla = "cledebutilla"; localStorage.setItem(cledebutilla, '0');
+
 	var cledebutvida = "cledebutvida"; localStorage.setItem(cledebutvida, '0');
+
 	var cledebutmusa = "cledebutmusa"; localStorage.setItem(cledebutmusa, '0');
+
 	var cledebutdocrefa = "cledebutdocrefa"; localStorage.setItem(cledebutdocrefa, '0');
+
 	var cledebutinta = "cledebutinta"; localStorage.setItem(cledebutinta, '0');
+
 	//Clés Titre du document
+
 	var cletitre = "cletitre"; var clearticle = "clearticle"; var cletitreweb = "cletitreweb"; var cletitrei = "cletitrei";
+
 	var cledocrefer = "cledocrefer"; var clecartesa = "clecartesa"; var cleintersa = "cleintersa";
 
+	
+
 	var affbibli = "affbibli"; localStorage.setItem(affbibli, '0');
+
 	var aff = 0;
 
+
+
 //------------------------------------------------------ 
+
 //fonction tri par colonne d'un tableau
+
 function TriParCol(arr, colIndex) {
+
         function Tri(a, b)
+
          {
+
 			a = a[colIndex]
+
 			b = b[colIndex]
+
 			return (a === b) ? 0 : (a<b) ? -1 : 1
+
 			}
+
         arr.sort(Tri);
+
 		}
+
 //------------------------------------------------------ 
+
 //Fonction enlever les caractères accentués
+
 String.prototype.SansAccent = function(){
+
     var accent = [
+
         /[\300-\306]/g, /[\340-\346]/g, // A, a
+
         /[\310-\313]/g, /[\350-\353]/g, // E, e
+
         /[\314-\317]/g, /[\354-\357]/g, // I, i
+
         /[\322-\330]/g, /[\362-\370]/g, // O, o
+
         /[\331-\334]/g, /[\371-\374]/g, // U, u
+
         /[\321]/g, /[\361]/g, // N, n
+
         /[\307]/g, /[\347]/g, ]; // C, c  
+
     var noaccent = ['A','a','E','e','I','i','O','o','U','u','N','n','C','c'];
+
     var str = this;
+
     for(var i = 0; i < accent.length; i++){
+
         str = str.replace(accent[i], noaccent[i]);
+
     } return str; }
+
 //------------------------------------------------------ 
+
 // Test auteur
+
 function TestAuteur () 
+
 {
+
 	//enlever les espaces du début
+
 	var nomauteur = JSON.parse(localStorage.getItem(testnom));
+
 	var nomauteur = nomauteur.trim();
+
 	//variables début auteur
+
 	var testauteur2 = nomauteur.substring(0,2);
+
 	var testauteur3 = nomauteur.substring(0,3);
+
 	var testauteur4 = nomauteur.substring(0,4);
+
 	var testauteur6 = nomauteur.substring(0,6);
+
 	//enlever les articles devant le nom d'auteur, isoler début auteur entre ()		
+
 	if (nomauteur.trim() == "") {var ref1 = ref1; var debutauteur ="";}
+
 	else {	
+
 		if (testauteur6 == "DE LA ") 
+
 			{ var debutauteur= "(DE LA) "; var nomauteur = nomauteur.replace(testauteur6,"")	}
+
 		else if (testauteur3 == "LA ") 
+
 			{ var debutauteur = "(LA) "; var nomauteur = nomauteur.replace(testauteur3,"")	}
+
 		else if (testauteur3 == "LE ") 
+
 			{ var debutauteur = "(LE) "; var nomauteur = nomauteur.replace(testauteur3,"")	}
+
 		else if (testauteur3 == "L' ") 
+
 			{ var debutauteur = "(L')"; var nomauteur = nomauteur.replace(testauteur3,"")		}
+
 		else if (testauteur3 == "DE ") 
+
 			{ var debutauteur = "(DE) "; var nomauteur = nomauteur.replace(testauteur3,"")	}
+
 		else if (testauteur3 == "D' ")
+
 			{ var debutauteur = "(D')"; var nomauteur = nomauteur.replace(testauteur3,"")		}
+
 		else if (testauteur3 == "DU ")
+
 			{ var debutauteur = "(DU) "; var nomauteur = nomauteur.replace(testauteur3,"")	}
+
 		else if (testauteur4 == "LES ")
+
 			{ var debutauteur = "(LES) "; var nomauteur = nomauteur.replace(testauteur4,"") 	}
+
 		else if	(testauteur4 == "DES ") 		
+
 			{ var debutauteur = "(DES) "; var nomauteur = nomauteur.replace(testauteur4,"") 	}
+
 		else if (testauteur2 == "L'")
+
 			{ var debutauteur = "(L')"; var nomauteur = nomauteur.replace(testauteur2,"")		}
+
 		else if (testauteur2 == "D'")
+
 			{ var debutauteur = "(D')"; var nomauteur = nomauteur.replace(testauteur2,"")		}
+
 		else { var nomauteur = nomauteur ; var debutauteur = "NON" ; 	}		
+
 		}; 	
+
 //retourner un tableau à 2 valeurs
+
 	var nom = nomauteur;
+
 	var debut = debutauteur;
+
 	return {nom:nomauteur, debut:debutauteur};
+
 }
+
 //------------------------------------------------------ 
+
 // Création de la bibliographie
+
 function Bibliographie() 
 
 {
@@ -3964,7 +4127,10 @@ html, body {
 }
 
 </style> 
-<font face="Arial, Helvetica, sans-serif">
+
+
+
+  <font face="Arial, Helvetica, sans-serif">
 
 <form name="form">
 
@@ -3976,7 +4142,7 @@ html, body {
 
         <h2 style="color: darkgreen; text-align: center;">Réaliser une Bibliographie en 4 étapes</h2>
 
-		<div align="center"><i>Version du 5 février 2020</i></div>
+		<div align="center"><i>Version du 1er août 2020</i></div>
 
 		<div align="center">Testé sous Firefox et Chrome</div>
 
@@ -4008,7 +4174,8 @@ html, body {
 
               <tr style="background-color: #FFF8DD; ">
 
-                <td style="text-align: center;"><img title="Livre" alt="" src="livre.png"><br> </td>
+                <td style="text-align: center; font-size: 200%;">&#128218;</td>
+				<!--<img title="Livre" alt="" src="livre.png"><br> -->			
 
                 <td><b>Livre :</b> </td>
 
@@ -4016,7 +4183,7 @@ html, body {
 
 if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline';this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='inline';  this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='none'; this.form.totpages.style.display='inline'; this.form.qqpages.style.display='inline'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='inline';} return true;"
 
-                    id="livre" type="radio"></a> entier ou extrait(s)
+                    id="livre" type="radio"></a>&#128196; entier ou extrait(s)
 
 					<a href="#identite"><input name="typedoc" value="Chapitre"
 
@@ -4024,15 +4191,13 @@ if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.sty
 
 if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='inline'; this.form.titchap.style.display='inline'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='inline';} return true;"
 
-                    id="chapitre" type="radio"></a> chapitre <br>
+                    id="chapitre" type="radio"></a>&#128196; chapitre <br>
 
                   <a href="#identite"><input name="typedoc" value="Livrenum" onclick="
 
 if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.fonct2.style.display='inline';this.form.editweb.style.display='none'; this.form.edit.style.display='inline'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='inline'; this.form.dateconsult.style.display='inline'; this.form.numero.style.display='none'; this.form.totpages.style.display='inline'; this.form.qqpages.style.display='inline'; this.form.urlweb.style.display='inline'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='inline';} return true;"
 
-                    id="livrenum" type="radio"></a><img title="En ligne" alt=""
-
-                    src="internet2.png"> numérique en ligne (entier ou extrait(s))</td>
+                    id="livrenum" type="radio"></a>&#128246; numérique en ligne (entier ou extrait(s))</td>
 
               </tr>
 
@@ -4040,7 +4205,9 @@ if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.sty
 
               <tr style="background-color: #EAECFF;">
 
-                <td style="text-align: center;"><img title="Journaux et magazines" alt="" src="journal.png"><br>  </td>
+                <td style="text-align: center; font-size: 200%;">&#128240;
+				<!--  <img title="Journaux et magazines" alt="" src="journal.png"><br> -->
+				</td>
 
                 <td><b>Article de<br>périodique :</b></td>
 
@@ -4050,23 +4217,19 @@ if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.sty
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline';this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='none'; this.form.fonct2.style.display='none';this.form.titre.style.display='none'; this.form.titperiod.style.display='inline'; this.form.editweb.style.display='none'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='inline'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none'; }  return true;"
 
-                      id="article" type="radio"></a> papier <br>
+                      id="article" type="radio"></a>&#128196; papier <br>
 
                     <a href="#identite"><input name="typedoc" value="Articleint" onclick="
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='none'; this.form.fonct2.style.display='none';this.form.titre.style.display='none'; this.form.titperiod.style.display='inline'; this.form.fonct2.style.display='none';this.form.editweb.style.display='none'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='inline'; this.form.datepubli.style.display='inline'; this.form.maj.style.display='inline'; this.form.dateconsult.style.display='inline'; this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; this.form.urlweb.style.display='inline'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';}  return true;"
 
-                      id="articleint" type="radio"><img title="En ligne" alt=""
-
-                      src="internet2.png"></a> internet 
+                      id="articleint" type="radio"></a>&#128246; internet 
 
 					<a href="#identite"><input name="typedoc" value="Articleuro" onclick="
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline';this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='none'; this.form.fonct2.style.display='none';this.form.titre.style.display='none'; this.form.titperiod.style.display='inline'; this.form.editweb.style.display='none'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='inline'; this.form.datepubli.style.display='inline'; this.form.maj.style.display='inline'; this.form.dateconsult.style.display='inline'; this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';}  return true;"
 
-                      id="articleuro" type="radio"></a><img title="Europresse"
-
-                      alt="" src="logo_europresse.png"> Europresse 
+                      id="articleuro" type="radio"></a>&#128246;&#128196; Europresse 
 
                 </td>
 
@@ -4076,7 +4239,9 @@ if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.sty
 
               <tr style="background-color: #FFF8DD;">
 
-                <td style="text-align: center;"><img title="Internet" alt="" src="internet.png"><br></td>
+                <td style="text-align: center; font-size: 200%;">&#128246;
+				<!-- <img title="Internet" alt="" src="internet.png"><br>-->
+				</td>
 
                 <td><b>Page internet :</b></td>
 
@@ -4091,8 +4256,9 @@ if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.sty
               <!-- Illustration -->
 
               <tr style="background-color: #EAECFF;">
-
-                <td style="text-align: center;"><img title="Illustration" alt="" src="illustration.png"><br> </td>           
+                <td style="text-align: center; font-size: 200%;">&#127943;
+				<!-- <img title="Illustration" alt="" src="illustration.png"><br> -->
+				</td>           
 
                 <td><b>Illustration<br>dans... :</b></td>
 
@@ -4102,21 +4268,19 @@ if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.sty
 
  if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline';this.form.nomill.style.display='inline'; this.form.prenomill.style.display='inline'; this.form.titreill.style.display='inline'; this.form.dateill.style.display='inline'; this.form.formatill.style.display='inline'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='inline';  this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='inline';} return true;"
 
-                      id="illlivre" type="radio"></a> un livre
+                      id="illlivre" type="radio"></a>&#128218; un livre
 
 					  <a href="#identite"><input name="typedoc" value="Illperiod" onclick="
 
  if (this.checked) {  this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline';this.form.nomill.style.display='inline'; this.form.prenomill.style.display='inline'; this.form.titreill.style.display='inline'; this.form.dateill.style.display='inline'; this.form.formatill.style.display='inline'; this.form.fonct.style.display='none'; this.form.fonct2.style.display='none';this.form.titre.style.display='none'; this.form.titperiod.style.display='inline'; this.form.editweb.style.display='none'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='inline'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';}  return true;"
 
-                      id="illarticle" type="radio"></a> un périodique papier <br>
+                      id="illarticle" type="radio"></a>&#128240; un périodique papier <br>
 
                     <a href="#identite"><input name="typedoc" value="Illweb" onclick="
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline';this.form.nomill.style.display='inline'; this.form.prenomill.style.display='inline'; this.form.titreill.style.display='inline'; this.form.dateill.style.display='inline'; this.form.formatill.style.display='inline'; this.form.fonct.style.display='none'; this.form.fonct2.style.display='none';this.form.titre.style.display='none'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='inline'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline'; this.form.maj.style.display='inline'; this.form.dateconsult.style.display='inline'; this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='inline'; this.form.titweb.style.display='inline'; this.form.duree.style.display='none'; this.form.support.style.display='none';  this.form.forma.style.display='none';  this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';} return true;"
 
-                      id="illweb" type="radio"></a><img title="En ligne" alt=""
-
-                      src="internet2.png"> une page internet 
+                      id="illweb" type="radio"></a>&#128246; une page internet 
 
                 </td>
 
@@ -4126,7 +4290,9 @@ if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.sty
 
               <tr style="background-color: #FFF8DD;">
 
-                <td style="text-align: center;"><img title="Vidéo" alt="" src="video.png"><br></td>
+                <td style="text-align: center; font-size: 200%;">&#127916;
+				<!-- <img title="Vidéo" alt="" src="video.png"><br>-->
+				</td>
 
                 <td><b>Vidéo :</b></td>
 
@@ -4136,23 +4302,19 @@ if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.sty
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline';this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='inline'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='inline'; this.form.support.style.display='inline'; this.form.forma.style.display='none'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none'; } return true;"
 
-                      id="video" type="radio"></a> enregistrement local (DVD, ...) <br>
+                      id="video" type="radio"></a>&#128187; enregistrement local (DVD, ...) <br>
 
 					<a href="#identite"><input name="typedoc" value="Video" onclick="
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='inline'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='inline'; this.form.dateconsult.style.display='inline'; this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='inline'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';} return true;"
 
-                      id="videoy" type="radio"></a><img title="En ligne" alt=""
-
-                      src="youtube.png"> sur Youtube
+                      id="videoy" type="radio"></a>&#128246; dans Youtube
 
                     <a href="#identite"><input name="typedoc" value="Video" onclick="
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='inline'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='inline'; this.form.dateconsult.style.display='inline'; this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='inline'; this.form.titweb.style.display='inline'; this.form.duree.style.display='inline'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';} return true;"
 
-                      id="videoweb" type="radio"></a><img title="En ligne" alt=""
-
-                      src="internet2.png"> sur internet
+                      id="videoweb" type="radio"></a>&#128246; internet
 
                 </td>
 
@@ -4162,9 +4324,8 @@ if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.sty
 
               <tr style="background-color: #EAECFF;">
 
-                <td style="text-align: center;"><img title="Musique" alt="" src="musique.png"><br>
-
-                </td>
+                <td style="text-align: center; font-size: 200%;">&#127925;</td>
+				<!-- <img title="Musique" alt="" src="musique.png"><br>-->
 
                 <td><b>Musique<br>Chanson :</b></td>
 
@@ -4174,15 +4335,13 @@ if (this.checked)  {  this.form.nom.style.display='inline'; this.form.prenom.sty
 
 if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='inline'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='inline'; this.form.support.style.display='inline'; this.form.forma.style.display='inline'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';} return true;"
 
-                      id="music" type="radio"></a> enregistrement local (Vinyl, CD...) <br>
+                      id="music" type="radio"></a>&#128187; enregistrement local (Vinyl, CD...) <br>
 
                     <a href="#identite"><input name="typedoc" value="Music" onclick="
 
 if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline';this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='inline'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline';  this.form.maj.style.display='inline'; this.form.dateconsult.style.display='inline'; this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='inline'; this.form.titweb.style.display='inline'; this.form.duree.style.display='inline'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';} return true;"
 
-                      id="musicweb" type="radio"></a><img title="En ligne" alt=""
-
-                      src="internet2.png"> sur internet</div>
+                      id="musicweb" type="radio"></a>&#128246; internet</div>
 
                 </td>
 
@@ -4192,11 +4351,10 @@ if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.sty
 
               <tr style="background-color: #FFF8DD;">
 
-                <td style="text-align: center;"><img title="Document de référence"
+                <td style="text-align: center; font-size: 200%;">&#128271;</td>
+				<!--<img title="Document de référence" alt="" src="dictionnaire.jpg"><br>-->
 
-                    alt="" src="dictionnaire.jpg"><br>
-
-                </td>
+                
 
                 <td><b>Document<br>de référence : </b></td>
 
@@ -4204,29 +4362,25 @@ if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.sty
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='none'; this.form.fonct2.style.display='none';this.form.titre.style.display='none'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline'; this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='inline'; this.form.dico.style.display='inline'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='inline';} return true;"
 
-                    id="dict" type="radio"></a> définition dans un dictionnaire papier <br>
+                    id="dict" type="radio"></a>&#128218; définition dans un dictionnaire papier <br>
 
                   <a href="#identite"><input name="typedoc" value="Dictint" onclick="
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline';this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='none'; this.form.fonct2.style.display='none'; this.form.titre.style.display='none'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline'; this.form.maj.style.display='inline'; this.form.dateconsult.style.display='inline'; this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='inline'; this.form.titweb.style.display='none'; this.form.duree.style.display='none';  this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='inline'; this.form.dico.style.display='inline'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='inline';} return true;"
 
-                    id="dictint" type="radio"></a><img title="En ligne" alt="" src="internet2.png">
-
-                  définition dans un dictionnaire sur internet<br>
+                    id="dictint" type="radio"></a>&#128246; définition dans un dictionnaire sur internet<br>
 
                   <a href="#identite"><input name="typedoc" value="Encyclop" onclick="
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='none'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='inline'; this.form.datepubli.style.display='inline'; this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='inline'; this.form.isbn.style.display='inline';} return true;"
 
-                    id="encyclop" type="radio"></a> article d'encyclopédie papier <br>
+                    id="encyclop" type="radio"></a>&#128218; article d'encyclopédie papier <br>
 
                   <a href="#identite"><input name="typedoc" value="Universal" onclick="
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='none'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='inline'; this.form.datepubli.style.display='none'; this.form.maj.style.display='none'; this.form.dateconsult.style.display='inline'; this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none'; } return true;"
 
-                    id="universal" type="radio"></a><img title="Universalis en ligne"
-
-                    alt="" src="logo-eu.jpg"> article de l'encyclopédie Universalis en ligne<br>
+                    id="universal" type="radio"></a>&#128246; article de l'Encyclopédie Universalis Education<br>
 
                 </td>
 
@@ -4236,12 +4390,10 @@ if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.sty
 
               <tr style="background-color: #EAECFF;">
 
-                <td style="text-align: center;"><img title="Carte Interview" alt=""
+                <!--<td style="text-align: center;"><img title="Carte Interview" alt="" src="carte.png"><br>  </td>-->
 
-                    src="carte.png"><br>
-
-                </td>
-
+				<td style="text-align: center; font-size: 200%;">&#128204;</td>
+              
                 <td><b>Autre :</b> </td>
 
                 <td>
@@ -4250,21 +4402,19 @@ if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.sty
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline';this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='inline'; this.form.fonct2.style.display='inline';this.form.titre.style.display='none'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline'; this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none';  this.form.forma.style.display='none';  this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';} return true;"
 
-                      id="interview" type="radio"></a> interview<br>
+                      id="interview" type="radio"></a>&#127908; interview<br>
 
                    <a href="#identite"> <input name="typedoc" value="Carte" onclick="
 
  if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.nom2.style.display='none'; this.form.prenom2.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='none'; this.form.fonct2.style.display='none';this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='none'; this.form.edit.style.display='inline'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline'; this.form.maj.style.display='none'; this.form.dateconsult.style.display='none'; this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='none'; this.form.titweb.style.display='none'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';} return true;"
 
-                      id="carte" type="radio"></a> carte papier 
+                      id="carte" type="radio"></a>&#128204;&#128196; carte papier 
 
 					<a href="#identite">  <input name="typedoc" value="Carteweb" onclick="
 
 if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.nom2.style.display='none'; this.form.prenom2.style.display='none'; this.form.titreill.style.display='none'; this.form.dateill.style.display='none'; this.form.formatill.style.display='none'; this.form.fonct.style.display='none'; this.form.fonct2.style.display='none';this.form.titre.style.display='inline'; this.form.titperiod.style.display='none'; this.form.editweb.style.display='inline'; this.form.edit.style.display='none'; this.form.titchap.style.display='none'; this.form.titarticle.style.display='none'; this.form.datepubli.style.display='inline'; this.form.maj.style.display='inline'; this.form.dateconsult.style.display='inline'; this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; this.form.urlweb.style.display='inline'; this.form.titweb.style.display='inline'; this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; this.form.def.style.display='none'; this.form.dico.style.display='none'; this.form.encyclo.style.display='none'; this.form.isbn.style.display='none';} return true;"
 
-                      id="carteweb" type="radio"></a><img title="En ligne" alt=""
-
-                      src="internet2.png"> carte sur internet
+                      id="carteweb" type="radio"></a>&#128246; carte sur internet
 
                 </td>
 
@@ -4310,11 +4460,7 @@ if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.sty
 
               <tr>
 
-                <td style="background-color: #ccffcc;"><b>Illustration : </b><img
-
-                    style="width: 36px; height: 19px;" title="Illustration" alt=""
-
-                    src="illustration.png"></td>
+                <td style="background-color: #ccffcc;"><b>&#127943; Illustration : </b></td>
 
                 <td style="padding-top: 5px; background-color: #ccffcc;"><input
 
@@ -4704,7 +4850,7 @@ if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.sty
 
 	<td style="width: 60px; height: 60px; background-color: Moccasin; color: darkgreen; text-align: center; font-size: 24px"><b>4</b></td>
 
-	<td style="padding-top: 17px; padding-left: 5px;"><h3 align="left">..., enfin, une fois que toutes les références ont été saisies, copiez la Bibliographie et collez-là dans un Traitement de Texte !</h3></td>
+	<td style="padding-top: 17px; padding-left: 5px;"><h3 align="left">..., enfin, une fois que toutes les références ont été saisies, copiez la Bilbliographie et collez-là dans un Traitement de Texte !</h3></td>
 
 	</tr></tbody> </table>
 
@@ -4712,7 +4858,7 @@ if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.sty
 
 <div>Il faudra créer les références supplémentaires séparément et les glisser individuellement (au bon emplacement) dans le Traitement de texte.</div>
 
-<div><b>Pensez à adapater la police de caractère au reste de votre travail.</b></div>	
+<div><b>Pensez à adpater la police de caractère au reste de votre travail.</b></div>	
 
 	
 
@@ -4724,7 +4870,6 @@ if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.sty
 
     professeur-documentaliste dans l'académie de Paris.<br><br>
 
-    Illustrations : pixabay.com<br>
 
     </i></td></tr></tbody>
 
@@ -4739,6 +4884,6 @@ if (this.checked) {   this.form.nom.style.display='inline'; this.form.prenom.sty
 	
 
   </body>
-	 
+
 </html>
 
