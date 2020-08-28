@@ -328,11 +328,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (anneepub.trim() =="") {alert("Il manque la date de publication !"); return false;} 
@@ -393,11 +393,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (anneepub.trim() =="") {alert("Il manque la date de publication !"); return false;} 
@@ -469,7 +469,7 @@ function Bibliographie()
 		if (datepub.trim() =="") {alert("Il manque la date de publication !"); return false;};
 		if (editeur.trim() =="") {alert("Il manque l'éditeur !"); return false;};
 		if (pages.trim() =="") {alert("Il manque le nombre de pages !"); return false;};
-		if (prenomauti.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+virgule+prenomauti+point; } 
+		if (prenomauti.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+" "+prenomauti+point; } 
 		var ref0 = ref0+guill1+titrei+guill2;
 		if (datei.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+parenthese1+datei+parenthese2; }
 		if (formati.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+crochet1+formati+crochet2; } 	
@@ -482,11 +482,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;		
 				var ref1 = ref1+nomauteur; 
 				}
-		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }	
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
@@ -541,11 +541,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (anneepub.trim() =="") {alert("Il manque la date de publication !"); return false;} 
@@ -603,11 +603,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (anneepub.trim() =="") {alert("Il manque la date de publication !"); return false;} 
@@ -666,11 +666,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (anneepub.trim() =="") {alert("Il manque la date de publication !"); return false;} 
@@ -731,11 +731,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (anneepub.trim() =="") {alert("Il manque la date de publication !"); return false;} 
@@ -794,11 +794,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; } 
 		//if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
@@ -854,11 +854,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		//if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }
 		if (anneepub.trim() =="") {alert("Il manque la date de publication !"); return false;} 
@@ -919,11 +919,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+sansdatep+point; }
@@ -975,11 +975,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; } 
 		if (anneepub.trim() =="") { var anneepubp = sansdatep; var datepub = sansdate; } 
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
@@ -1044,7 +1044,7 @@ function Bibliographie()
 		if (datepub.trim() =="") {alert("Il manque la date de publication !"); return false;};
 		if (editeur.trim() =="") {alert("Il manque l'éditeur !"); return false;};
 		if (pages.trim() =="") {alert("Il manque le nombre de pages !"); return false;};
-		if (prenomauti.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+virgule+prenomauti+point; } 
+		if (prenomauti.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+" "+prenomauti+point; } 
 		var ref0 = ref0+guill1+titrei+guill2;
 		if (datei.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+parenthese1+datei+parenthese2; }
 		if (formati.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+crochet1+formati+crochet2; } 	
@@ -1055,11 +1055,11 @@ function Bibliographie()
 				var nomauteur = obj.nom;
 				var debutauteur = obj.debut;		
 				var ref1 = ref1+nomauteur; }
-		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }
@@ -1114,7 +1114,7 @@ function Bibliographie()
 		if (titreperiod.trim() =="") {alert("Il manque le Titre du périodique !"); return false;};
 		if (datepub.trim() =="") {alert("Il manque la date de publication !"); return false;};
 		if (pages.trim() =="") {alert("Il manque les numéros de pages !"); return false;};
-		if (prenomauti.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+virgule+prenomauti+point; } 
+		if (prenomauti.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+" "+prenomauti+point; } 
 		var ref0 = ref0+guill1+titrei+guill2;
 		if (datei.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+parenthese1+datei+parenthese2; }
 		if (formati.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+crochet1+formati+crochet2; } 	
@@ -1125,11 +1125,11 @@ function Bibliographie()
 				var nomauteur = obj.nom;
 				var debutauteur = obj.debut;		
 				var ref1 = ref1+nomauteur; }
-		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; } 
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }
@@ -1184,7 +1184,7 @@ function Bibliographie()
 		if (titreweb.trim() =="") {alert("Il manque le Titre du document !"); return false;};
 		if (editeurweb.trim() =="") {alert("Il manque l'éditeur du site internet !"); return false;};
 		if (url.trim() =="") {alert("Il manque l'adresse URL du document !"); return false;};
-		if (prenomauti.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+virgule+prenomauti+point; } 
+		if (prenomauti.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+" "+prenomauti+point; } 
 		var ref0 = ref0+guill1+titrei+guill2;
 		if (datei.trim() == "") { var ref0 = ref0+sansdatep; } else { var ref0 = ref0+parenthese1+datei+parenthese2; }
 		if (formati.trim() == "") { var ref0 = ref0; } else { var ref0 = ref0+crochet1+formati+crochet2; } 	
@@ -1195,11 +1195,11 @@ function Bibliographie()
 				var nomauteur = obj.nom;
 				var debutauteur = obj.debut;		
 				var ref1 = ref1+nomauteur; }
-		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }
@@ -1252,11 +1252,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		//if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }
@@ -1316,11 +1316,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		//if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }
@@ -1375,11 +1375,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		//if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }
@@ -1440,11 +1440,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		//if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }
@@ -1502,11 +1502,11 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (anneepub.trim() =="") { var anneepubp = sansdatep; var datepub = sansdate; } 
@@ -1579,11 +1579,11 @@ function Bibliographie()
 		if (fonction.trim() == "") { alert("Il n'y a pas de fontion pour l'émetteur ! Elève ? Etudiant ? Professeur ? ..."); return false; } 
 		if (titre.trim() == "") { alert("Il n'y a pas de titre ! Personne interviewée ? Sa fonction ? Le motif de l'interview ?"); return false; } 
 		if (anneepub.trim() == "") { alert("Il n'y a pas de date d'interview !"); return false; } 
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else {var ref1 = ref1+parenthese1+fonction+parenthese2;}	
 		if (nomauteur2.trim() == "") { var ref1 = ref1; } else 
 			if (plusdedeux == "0") { var ref1 = ref1+et+nomauteur2; } else { var ref1 = ref1+virgule+nomauteur2; }
-		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut2; } 
+		if (prenomaut2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut2; } 
 		if (fonction2.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction2+parenthese2; }
 		if (plusdedeux == "0") { var ref1 = ref1; } else { var ref1 = ref1+etal}
 		if (anneepub.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+anneepubp; } 
@@ -1643,7 +1643,7 @@ function Bibliographie()
 	 	if (datepub.trim() =="") {alert("Il manque la date de publication !"); return false;}
 		if (editeur.trim() =="") {alert("Il manque l'éditeur !"); return false;}
 		if (editeur.trim() =="") {alert("Il manque l'échelle !"); return false;}
-		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+		if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 		
 		if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+anneepubp+point; }
 		//if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+point; }
@@ -1699,7 +1699,7 @@ function Bibliographie()
 				var debutauteur = obj.debut;
 				var ref1 = ref1+nomauteur; var quest='oui';
 			 }
-	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+virgule+prenomaut; } 
+	 	if (prenomaut.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+" "+prenomaut; } 
 		if (fonction.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+parenthese1+fonction+parenthese2; } 
 		if (anneepub.trim() =="") { var anneepubp = sansdatep; var datepub = sansdate; } 
 		if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+anneepubp+point; }
@@ -2273,13 +2273,13 @@ a:link {
 
 	<table style="border-collapse: collapse; width:590px;" cellpadding="4;"><tbody><tr><td>
         <h2 style="">Réaliser une Bibliographie en 4 étapes</h2>
-		<div align="center"><i>Version du 27 août 2020</i></div>
+		<div align="center"><i>Version du 28 août 2020</i></div>
 		<div align="center">Testé sous Firefox et Chrome</div>
 		</td></tr></tbody></table>
-		<div align="center"><br>Aide à l'utilisation :<br><iframe width="300" src="https://www.youtube.com/embed/11JOrpAxTbc"  
+		<br>&#x270B; <b>Aide à l'utilisation :</b><br><div align="center"><iframe width="300" src="https://www.youtube.com/embed/11JOrpAxTbc"  
 		frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-		<br>&#x270B; <b>Information :</b> 
-					<ul><li>norme bibliographique utilisée pour les supports &#x2192;<a href="#modele" >&#x1F4DC;</a> </li>
+		&#x270B; <b>Informations :</b> 
+					<ul><li><b>normes</b> bibliographiques utilisées pour les supports &#x2192;<a href="#modele" >&#x1F4DC;</a> </li>
 					<li>retour au choix de support depuis les normes &#x2192; &#x267B; </li>
 					</ul>
 	<table style="border-collapse: collapse; width:100%;"><tbody><tr>
@@ -2774,12 +2774,12 @@ a:link {
 		</tr></tbody>
 		</table>
 		
-		<i>(Passez la souris sur les champs pour avoir plus d'informations)</i><br>
-		<b>Complétez les éléments d'identité</b> en votre possession :<br>
-		- Le texte des <b>champs non complétés</b> n'apparaitra pas. Cependant,<br>
-		il peut être nécessaire d'effacer une case remplie précédemment.<br>
-		- Les champs à compléter <b>colorés</b> doivent, parfois, être obligatoirement remplis.
-	<br><br>
+		&#x270B; <b>Complétez les éléments d'identité</b> en votre possession :<br>
+		<ul><li>Seuls <b>les champs complétés apparaitront.</b></li>
+		<li>Les champs <b>colorés</b> à compléter doivent, parfois, être obligatoirement remplis.</li>
+		<li>Il peut être nécessaire d'<b>effacer une case complétée pour la référence précédente.</b></li>
+		<li><i>Passez la souris sur les champs pour avoir des indications</i></li></ul>
+	
 	<!-- -->
 	<div style="text-align:center;">
 	<input value="&#x274E; Vider le tableau !" type="reset">
@@ -2933,19 +2933,17 @@ a:link {
 		<td style="padding-top: 17px; padding-left: 5px;"><h3 align="left">... ensuite, lancez la construction de la Bibliographie normée...</h3></td>
 		</tr></tbody></table>
 
-          <div style="color:red"><b>Vérifiez la présence et la
-              qualité des données (orthographe, date, ...) !</b></div>
-          <div style="color:red">Certains éléments d'identité sont <b>obligatoires</b> : </div>
-          <div style="color:black">Si ils ne sont pas complétés des "oublis" apparaîtront
-            dans la référence bibliographique. Certaines alertes peuvent indiquer ces absences.<br>
-            <b>A vous de chercher et compléter les données manquantes.</b></div> 
-		 
+         <div style="color:red">&#x270B; <b>Vérifiez la présence et la qualité des données (orthographe, date, ...) !</b></div>
+         <br><div style="color:red">Certains <b>éléments d'identité</b> sont <b>obligatoires</b> : </div>
+			  <ol><li>Des <b>alertes</b> peuvent signaler des absences non autorisées de données.</li>
+			  <li>Lire l'alerte, <b>chercher et compléter ce qui manque.</b></li></ol>
 		 
 		 <table  style="border-collapse: collapse; width:590px;"><tbody>
               <tr>
                 <td style="text-align: center; width: 60%;" bgcolor="LightGreen">
-				<b><br>Bibliographie en cours, bouton :<br></b><br><a href="#biblio">
-				<input value="&#x2705; Ajouter la référence" onclick="Bibliographie()" type="button"></a><br><br>
+				<b>Bibliographie en cours,<br> cliquer sur le bouton :</b><br><br>
+				<a href="#biblio">
+				<input value="&#x2705; Ajouter la référence" onclick="Bibliographie()" type="button"></a><br>
 				</td>
                 <td style="text-align: center; width: 40%;">
 				Effacer pour une <b>nouvelle Bibliographie :</b><br>
@@ -2993,13 +2991,14 @@ a:link {
 	<td style="width: 40px; color: darkgreen; text-align: center; font-size: 40px;">&#x2779;</td>
 	<td style="padding-top: 17px; padding-left: 5px;"><h3 align="left">..., enfin, une fois que toutes les références ont été saisies, copiez la Bilbliographie et collez-là dans un Traitement de Texte !</h3></td>
 	</tr></tbody> </table>
-<div style="color:red"><b>Il n'est pas possible d'enregistrer pour continuer plus tard ! </b></div>
-<div>Il faudra créer les références supplémentaires séparément et les glisser individuellement (au bon emplacement) dans le Traitement de texte.</div>
-<div><b>Pensez à adpater la police de caractère au reste de votre travail.</b></div>	
+<div style="color:red">&#x270B; <b>Il n'est pas possible d'enregistrer pour continuer plus tard ! </b></div>
+<div>Par conséquent, <b>créer les références supplémentaires séparément</b> et les copier/coller individuellement 
+(au bon emplacement) dans le Traitement de texte.</div>
+<div><b>Penser à adpater la police de caractère au reste de votre travail.</b></div>	
 	
 	<table style="border-collapse: collapse; width:550px;" cellpadding="7;"><tbody><tr><td>
-    <i>Générateur réalisé par JFD, professeur-documentaliste, Lycée Agricole du
-    Bourbonnais, Moulins,à partir de l'outil mis à disposition par Claire Cassagne,
+    &#x1F449; <i>Générateur réalisé par J-F D, professeur-documentaliste, Lycée Agricole du
+    Bourbonnais, Moulins, à partir de l'outil mis à disposition par Claire Cassagne,
     professeur-documentaliste dans l'académie de Paris.<br>
 
     </i></td></tr></tbody>
@@ -3032,7 +3031,7 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
 					<td>EMETTEUR(S) (Année de publication). <b><i>Titre du livre</i></b>.
                       Lieu d'édition : Editeur, Date de publication, nombre de pages. Collection. Réf. : ISBN/EAN/Référence</td></tr>
 				<tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
-					<td>SVENSSON, Lars (Textes et cartes), MULLARNEY, Killian (Illustrateur) et al. (2015). 
+					<td>SVENSSON Lars (Textes et cartes), MULLARNEY Killian (Illustrateur) et al. (2015). 
 					<b><i>Le guide ornitho</i></b>. Paris : Delachaux et Niestlé, 03/2015, 446 p. Guide Delachaux. Réf. : 9782603023938</td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 				<td></td></tr>					  
@@ -3053,7 +3052,7 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
 					<td>EMETTEUR(S) (Année de publication). <b><i>Titre du livre</i></b>.
                       Lieu d'édition : Editeur, date de publication, page de début à page de fin. Collection. Réf. : ISBN/EAN/Référence</font></td></tr>
  				<tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
-					<td>SVENSSON, Lars (Textes et cartes), MULLARNEY, Killian (Illustrateur) et al. (2015). 
+					<td>SVENSSON Lars (Textes et cartes), MULLARNEY Killian (Illustrateur) et al. (2015). 
 					<b><i>Le guide ornitho</i></b>. Paris : Delachaux et Niestlé, 03/2015, p. 80 à 87. Guide Delachaux. Réf. : 9782603023938</td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 				<td></td></tr>
@@ -3063,7 +3062,7 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
 				<td style="width: 30px;">&#x1F4C4;<br>&#x1F4F6;</td><td style="width: 110px;"><b>chapitre de...</b></td>
 					<td>Placer devant la référence bibliographique d'un extrait de livre :<br><br>EMETTEUR(S) du chapitre (Année de publication). « Titre du chapitre » . In :</td></tr>
  				<tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
-					<td>« Rapaces diurnes » . In : SVENSSON, Lars (Textes et cartes), MULLARNEY, Killian (Illustrateur) et al. (2015). 
+					<td>« Rapaces diurnes » . In : SVENSSON Lars (Textes et cartes), MULLARNEY Killian (Illustrateur) et al. (2015). 
 					<b><i>Le guide ornitho</i></b>. Paris : Delachaux et Niestlé, 03/2015, p. 88 à 89 . Guide Delachaux. Réf. : 9782603023938</td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 				<td></td></tr>
@@ -3081,7 +3080,7 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
 					<td>EMETTEUR(S) (Année de publication). « Titre de l'article » . <b><i>Titre du périodique</i></b>,
                       date de publication, numéro, page de début à page de fin.</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
-					<td>FOUCART, Stéphane (2020). « Le Kilimandjaro échauffe les esprits » . <b><i>Le Monde</i></b>, 12/08/2020, p. 22.</td></tr>
+					<td>FOUCART Stéphane (2020). « Le Kilimandjaro échauffe les esprits » . <b><i>Le Monde</i></b>, 12/08/2020, p. 22.</td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 					<td>« Ça va se répéter » . <b><i>Le Journal de Saône et Loire</i></b>, 10/08/2020, p. 22. </td></tr>
               </tbody></table><br>
@@ -3091,7 +3090,7 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
 					<td>EMETTEUR(S) (Année de publication). « Titre de l'article » . <b><i>Titre du périodique</i></b>, 
                       date de publication, numéro, page de début à page de fin. Disponible à : www.europresse.com [Accès par abonnement] [Date de consultation]</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
-					<td>FOUCART, Stéphane (2020). « Le Kilimandjaro échauffe les esprits » . <b><i>Le Monde</i></b>, 12/08/2020, p. 22. Disponible à : www.europresse.com [Accès par abonnement] [14/08/2020]</td></tr>
+					<td>FOUCART Stéphane (2020). « Le Kilimandjaro échauffe les esprits » . <b><i>Le Monde</i></b>, 12/08/2020, p. 22. Disponible à : www.europresse.com [Accès par abonnement] [14/08/2020]</td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 					<td>« Ça va se répéter » . <b><i>Le Journal de Saône et Loire</i></b>, 10/08/2020, p. 22. Disponible à : www.europresse.com [Accès par abonnement] [14/08/2020]</td></tr>	
               </tbody></table><br>			  
@@ -3101,7 +3100,7 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
 					<td>EMETTEUR(S) (Année de publication). « Titre de l'article » . <b><i>Titre du périodique</i></b> [En ligne], 
                       Date de publication ou de mise à jour. Disponible à : www.site-internet.fr [Date de consultation]</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
-					<td>FOUCART, Stéphane (2020). « Le Kilimandjaro échauffe les esprits » . <b><i>Le Monde</i></b> [En ligne], 12/08/2020. Disponible à : www.lemonde.fr [14/08/2020]</td></tr>
+					<td>FOUCART Stéphane (2020). « Le Kilimandjaro échauffe les esprits » . <b><i>Le Monde</i></b> [En ligne], 12/08/2020. Disponible à : www.lemonde.fr [14/08/2020]</td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 				<td></td></tr>
 			  </tbody></table></ul></br>
@@ -3148,7 +3147,7 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
 					<td>EMETTEUR(S) ([Sans date]). « Titre article » In : <b><i>Encyclopédie Universalis</b></i> [En ligne] [Sans date].
 					 Disponible à : www.universalis-edu.com [Accès par abonnement] [Date de consultation]</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
-					<td>BOURG, Dominique (Professeur) ([Sans date]). « Développement durable » . In : <b><i>Encyclopédie Universalis</b></i> [En ligne].
+					<td>BOURG Dominique (Professeur) ([Sans date]). « Développement durable » . In : <b><i>Encyclopédie Universalis</b></i> [En ligne].
 					[Sans date]. Disponible à : www.universalis-edu.com [Accès par abonnement] [20/08/2020]</td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 				<td></td></tr>
@@ -3187,7 +3186,7 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
 					<td></td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
-					<td>« Huppe fasciée » [Dessin]. In : SVENSSON, Lars (Textes et cartes), MULLARNEY, Killian (Illustrateur) et al. (2015). 
+					<td>« Huppe fasciée » [Dessin]. In : SVENSSON Lars (Textes et cartes), MULLARNEY Killian (Illustrateur) et al. (2015). 
 					<b><i>Le guide ornitho</i></b>. Paris : Delachaux et Niestlé, 03/2015, p. 239. Guide Delachaux. Réf. : 9782603023938</td></tr>
 			 </tbody></table><br>	
 			<table style="width: 100%; border-collapse: collapse;"><tbody>
@@ -3228,7 +3227,7 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
 					<td>EMETTEUR(S) (Année de publication). <b><i>Titre de La vidéo</b></i> [Suppport]. 
 					 Lieu de production : Producteur, date de publication, durée. Réf. : ISBN/EAN/Référence</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
-					<td>PIZON, Frank (Réalisateur) (2018). <b><i>Sologne bourbonnaise par nature</b></i> [DVD]. Yzeure : Focalis, 2018, 52 min. </td></tr>
+					<td>PIZON Frank (Réalisateur) (2018). <b><i>Sologne bourbonnaise par nature</b></i> [DVD]. Yzeure : Focalis, 2018, 52 min. </td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 				<td></td></tr>
 			</tbody></table><br>	
