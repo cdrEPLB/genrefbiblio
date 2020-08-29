@@ -806,9 +806,12 @@ function Bibliographie()
 		if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+anneepub+point; }
 		//fin du test
 		if (definition.trim() =="") {alert("Il manque le mot définit !"); return false;};		
-		var ref2 = ref2+guill1+definition+guill2+dans;
+		var ref2 = ref2+guill1+definition+guill2+point+dans;
 		var ital = dictionnaire.bold(); var ref3 = ital.italics();
-		var ref3 = ref3+enligne+point+editeurweb;
+		//var ref3 = ref3+enligne+point+editeurweb;
+			if (lieuedition.trim() == "") { var ref1 = ref1; var ref3 = ref3+enligne+point+editeurweb;} 
+			else { var ref3 = ref3+enligne+point+lieuedition+" : "+editeurweb; }
+		
 		if (datepub.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+virgule+datepub; }
 		//if (datemaj.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+virgule+datemaj; }
 		var ref3 = ref3+point+dispo+url+crochet1+datecons+crochet2;
@@ -866,7 +869,7 @@ function Bibliographie()
 		if (ref1.trim() == "") { var ref1 = ref1; } else { var ref1 = ref1+anneepubp+point; }
 		//fin du test
 		if (article.trim() =="") {alert("Il manque le titre de l'article !"); return false;};	
-		var ref2 = ref2+guill1+article+guill2+dans;
+		var ref2 = ref2+guill1+article+guill2+point+dans;
 		var ital = encyclopedie.bold(); var ref3 = ital.italics();
 
 		if (editeur.trim() =="") {alert("Il manque l'éditeur !"); return false;}
@@ -2077,7 +2080,7 @@ function AffBiblio() {
 			classbibref[i][0]=biblio; classbibref[i][1]=titre;  	
 			i += 1; } 	
 			//tri en fonction du titre
-			TriParCol(classbibm, 1);
+			TriParCol(classbibref, 1);
 			//rangement selon le nouvel ordre
 			var classbibref2 = new Array();
 			var i = 0; while (i < nb) 
@@ -2273,7 +2276,7 @@ a:link {
 
 	<table style="border-collapse: collapse; width:590px;" cellpadding="4;"><tbody><tr><td>
         <h2 style="">Réaliser une Bibliographie en 4 étapes</h2>
-		<div align="center"><i>Version du 28 août 2020</i></div>
+		<div align="center"><i>Version du 29 août 2020</i></div>
 		<div align="center">Testé sous Firefox et Chrome</div>
 		</td></tr></tbody></table>
 		<br>&#x270B; <b>Aide à l'utilisation :</b><br><div align="center"><iframe width="300" src="https://www.youtube.com/embed/11JOrpAxTbc"  
@@ -2445,7 +2448,7 @@ a:link {
 	this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.fonct.style.display='inline';
 	this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline'; this.form.fonct2.style.display='inline';
   	this.form.titre.style.display='none'; this.form.titcoll.style.display='none';
-	this.form.lieuedit.style.display='none';
+	this.form.lieuedit.style.display='inline';
 	this.form.titarticle.style.display='none'; this.form.titweb.style.display='none';
 	this.form.def.style.display='inline'; this.form.dico.style.display='inline'; this.form.encyclo.style.display='none'; 
 	this.form.titperiod.style.display='none'; this.form.editweb.style.display='inline'; this.form.edit.style.display='none';   
@@ -2775,15 +2778,17 @@ a:link {
 		</table>
 		
 		&#x270B; <b>Complétez les éléments d'identité</b> en votre possession :<br>
-		<ul><li>Seuls <b>les champs complétés apparaitront.</b></li>
-		<li>Les champs <b>colorés</b> à compléter doivent, parfois, être obligatoirement remplis.</li>
+		<ul><li>Seules <b>les informations des cases complétées apparaitront.</b></li>
+		<li>Les cases <b>colorées</b> doivent, parfois, être obligatoirement remplies.</li>
 		<li>Il peut être nécessaire d'<b>effacer une case complétée pour la référence précédente.</b></li>
-		<li><i>Passez la souris sur les champs pour avoir des indications</i></li></ul>
+		<li><i>Passez la souris sur les cases pour avoir des indications</i></li></ul>
 	
 	<!-- -->
-	<div style="text-align:center;">
-	<input value="&#x274E; Vider le tableau !" type="reset">
-	</div> 
+	<div style="background-color:darkgreen;">
+	<table style="border-collapse: collapse; width:595px;" cellpadding="4;"><tbody><tr>
+	<td style="color:#fff; "><b>Identité du document :</b> </td>
+	<td style="text-align:right;"><input value="Vider le tableau ! &#x274E;" type="reset"></td>
+	</tr></tbody></table>
 		 
          <table style="border-collapse: collapse; width:590px;" cellpadding="4;">
             <tbody bgcolor="#FFF8DD">
@@ -2927,32 +2932,31 @@ a:link {
 
             </tbody>
           </table>  
-	
+		<br></div>
+		
 		<table style="border-collapse: collapse; width: 590px;"><tbody><tr>
 		<td style="width: 40px; color: darkgreen; text-align: center; font-size: 40px;">&#x2778;</td>
 		<td style="padding-top: 17px; padding-left: 5px;"><h3 align="left">... ensuite, lancez la construction de la Bibliographie normée...</h3></td>
 		</tr></tbody></table>
-
-         <div style="color:red">&#x270B; <b>Vérifiez la présence et la qualité des données (orthographe, date, ...) !</b></div>
-         <br><div style="color:red">Certains <b>éléments d'identité</b> sont <b>obligatoires</b> : </div>
+		<table  style="border-collapse: collapse; width:590px;"><tbody>
+			<tr>
+			<td style="text-align: center; width: 60%;" bgcolor="LightGreen">
+			<b>Bibliographie en cours,<br> cliquer sur le bouton :</b><br><br>
+			<a href="#biblio">
+			<input value="&#x2705; Ajouter la référence" onclick="Bibliographie()" type="button"></a><br>
+			</td>
+			<td style="text-align: center; width: 40%;">
+			Effacer pour une <b>nouvelle Bibliographie :</b><br>
+			  <b>Touches Ctrl+F5 (clavier)</b>
+			  <div style="text-align: center; font-size: 200%;">&#x1F6AE;</div>
+			 </td>
+			</tr>
+		   </tbody>
+		</table>
+        <div style="color:red">&#x270B; <b>Vérifiez la présence et la qualité des données (orthographe, date, ...) !</b></div>
+        <br><div style="color:red">Certains <b>éléments d'identité</b> sont <b>obligatoires</b> : </div>
 			  <ol><li>Des <b>alertes</b> peuvent signaler des absences non autorisées de données.</li>
 			  <li>Lire l'alerte, <b>chercher et compléter ce qui manque.</b></li></ol>
-		 
-		 <table  style="border-collapse: collapse; width:590px;"><tbody>
-              <tr>
-                <td style="text-align: center; width: 60%;" bgcolor="LightGreen">
-				<b>Bibliographie en cours,<br> cliquer sur le bouton :</b><br><br>
-				<a href="#biblio">
-				<input value="&#x2705; Ajouter la référence" onclick="Bibliographie()" type="button"></a><br>
-				</td>
-                <td style="text-align: center; width: 40%;">
-				Effacer pour une <b>nouvelle Bibliographie :</b><br>
-                  <b>Touches Ctrl+F5 (clavier)</b>
-				  <div style="text-align: center; font-size: 200%;">&#x1F6AE;</div>
-                 </td>
-              </tr>
-			   </tbody>
-          </table>
 		 
 <div id="bib">
 	<a id="biblio"></a>
@@ -3125,11 +3129,12 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
                 <tr style="background-color:#fff;">
                     <td style="width: 30px;">&#x1F4F6;</td><td style="width: 110px;"><b>...Dictionnaire<br>internet</b></td> 
 					<td>EMETTEUR(S) (Année de publication). « Mot défini » In : EMETTEUR(S). <b><i>Titre Dictionnaire</b></i> [En ligne].
-					 Editeur web, date de publication ou de mise à jour. Disponible à : www.site-internet.fr [Date de consultation] </td></tr>
+					 Lieu d'édition : Editeur web, date de publication ou de mise à jour. Disponible à : www.site-internet.fr [Date de consultation] </td></tr>
 					 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
 					<td></td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
-				<td></td></tr>
+				<td>« Information » . In : <b><i>CNRTL</b></i> [En ligne]. Nancy : Centre National de Ressources Textuelles et Lexicales, [Sans date]. 
+				Disponible à : https://cnrtl.fr/definition/ [20/08/2020]</td></tr>
 			</tbody></table><br>
 			<table style="width: 100%; border-collapse: collapse;"><tbody>
                 <tr style="background-color:#fff;">
@@ -3345,10 +3350,6 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
 		</div>
 </div>
 
- 
 	</font>
-
-		
-		
   </body>
 </html>
