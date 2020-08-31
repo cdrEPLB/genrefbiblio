@@ -375,7 +375,7 @@ function Bibliographie()
 			var cledeb = cledebutlivrea+JSON.parse(localStorage.getItem(clelivrea));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomlivrea+JSON.parse(localStorage.getItem(clelivrea));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));			
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));			
 			}
 	}
 
@@ -446,7 +446,7 @@ function Bibliographie()
 			var cledeb = cledebutlivrea+JSON.parse(localStorage.getItem(clelivrea));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomlivrea+JSON.parse(localStorage.getItem(clelivrea));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));		
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));		
 			}	
 	}
 	
@@ -523,7 +523,7 @@ function Bibliographie()
 			var cledeb = cledebutlivrea+JSON.parse(localStorage.getItem(clelivrea));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteuri));
 			var clen = clenomlivrea+JSON.parse(localStorage.getItem(clelivrea));
-			localStorage.setItem(clen, JSON.stringify(nomauteuri));			
+			localStorage.setItem(clen, JSON.stringify(nomauteuri+" "+1/anneepub));			
 			}	
 	}
 //------------------------------------------------------ Article de périodique
@@ -586,7 +586,7 @@ function Bibliographie()
 			var cledeb = cledebutperioda+JSON.parse(localStorage.getItem(cleperioda));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomperioda+JSON.parse(localStorage.getItem(cleperioda));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));
 			}		
 	}
 	//Article de périodique Europresse
@@ -648,7 +648,7 @@ function Bibliographie()
 			var cledeb = cledebutperioda+JSON.parse(localStorage.getItem(cleperioda));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomperioda+JSON.parse(localStorage.getItem(cleperioda));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));
 			}			
 	}
 		// Article de périodique internet
@@ -713,7 +713,7 @@ function Bibliographie()
 			var cledeb = cledebutperioda+JSON.parse(localStorage.getItem(cleperioda));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomperioda+JSON.parse(localStorage.getItem(cleperioda));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));
 			}						
 	}
 //------------------------------------------------------ Documents de référence
@@ -777,7 +777,7 @@ function Bibliographie()
 			var cledeb = cledebutdocrefa+JSON.parse(localStorage.getItem(cledocrefa));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomdocrefa+JSON.parse(localStorage.getItem(cledocrefa));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));
 			}
 	}
 	// Dictionnaire en ligne
@@ -840,7 +840,7 @@ function Bibliographie()
 			var cledeb = cledebutdocrefa+JSON.parse(localStorage.getItem(cledocrefa));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomdocrefa+JSON.parse(localStorage.getItem(cledocrefa));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));
 			}
 	}
 	// Encyclopédie papier
@@ -905,7 +905,7 @@ function Bibliographie()
 			var cledeb = cledebutdocrefa+JSON.parse(localStorage.getItem(cledocrefa));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomdocrefa+JSON.parse(localStorage.getItem(cledocrefa));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));
 			}
 	}
 	// Universalis en ligne
@@ -959,7 +959,7 @@ function Bibliographie()
 			var cledeb = cledebutdocrefa+JSON.parse(localStorage.getItem(cledocrefa));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomdocrefa+JSON.parse(localStorage.getItem(cledocrefa));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));
 			}
 	}
 //------------------------------------------------------ Page internet
@@ -1024,7 +1024,7 @@ function Bibliographie()
 			var cledeb = cledebutweba+JSON.parse(localStorage.getItem(cleweba));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomweba+JSON.parse(localStorage.getItem(cleweba));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));			
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));			
 			}		
 	}
 //------------------------------------------------------ Illustrations
@@ -1095,7 +1095,7 @@ function Bibliographie()
 			var cledeb = cledebutilla+JSON.parse(localStorage.getItem(cleilla));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteuri));
 			var clen = clenomilla+JSON.parse(localStorage.getItem(cleilla));
-			localStorage.setItem(clen, JSON.stringify(nomauteuri));				
+			localStorage.setItem(clen, JSON.stringify(nomauteuri+" "+1/anneepub));				
 			}		
 	}
 	//Illustration article
@@ -1166,7 +1166,7 @@ function Bibliographie()
 			var cledeb = cledebutilla+JSON.parse(localStorage.getItem(cleilla));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteuri));
 			var clen = clenomilla+JSON.parse(localStorage.getItem(cleilla));
-			localStorage.setItem(clen, JSON.stringify(nomauteuri));			
+			localStorage.setItem(clen, JSON.stringify(nomauteuri+" "+1/anneepub));			
 		}	
 	}
 	//Illustration internet
@@ -1237,7 +1237,7 @@ function Bibliographie()
 			var cledeb = cledebutilla+JSON.parse(localStorage.getItem(cleilla));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteuri));
 			var clen = clenomilla+JSON.parse(localStorage.getItem(cleilla));
-			localStorage.setItem(clen, JSON.stringify(nomauteuri));				
+			localStorage.setItem(clen, JSON.stringify(nomauteuri+" "+1/anneepub));				
 			}	
 	}
 //------------------------------------------------------ Vidéo
@@ -1302,7 +1302,7 @@ function Bibliographie()
 			var cledeb = cledebutvida+JSON.parse(localStorage.getItem(clevida));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomvida+JSON.parse(localStorage.getItem(clevida));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));						
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));						
 			}	
 	}
 	// Vidéo Youtube
@@ -1361,7 +1361,7 @@ function Bibliographie()
 			var cledeb = cledebutvida+JSON.parse(localStorage.getItem(clevida));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomvida+JSON.parse(localStorage.getItem(clevida));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));			
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));			
 			}
 	}
 	//	Vidéo web
@@ -1425,7 +1425,7 @@ function Bibliographie()
 			var cledeb = cledebutvida+JSON.parse(localStorage.getItem(clevida));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomvida+JSON.parse(localStorage.getItem(clevida));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));			
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));			
 			}
 	}
 //------------------------------------------------------ Musique
@@ -1488,7 +1488,7 @@ function Bibliographie()
 			var cledeb = cledebutmusa+JSON.parse(localStorage.getItem(clemusa));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenommusa+JSON.parse(localStorage.getItem(clemusa));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));		
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));		
 			}
 	}
 	//Musique internet
@@ -1561,7 +1561,7 @@ function Bibliographie()
 			var cledeb = cledebutmusa+JSON.parse(localStorage.getItem(clemusa));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenommusa+JSON.parse(localStorage.getItem(clemusa));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));	
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));	
 			}
 	}
 
@@ -1625,7 +1625,7 @@ function Bibliographie()
 			var cledeb = cledebutinta+JSON.parse(localStorage.getItem(cleinta));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenominta+JSON.parse(localStorage.getItem(cleinta));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));
 			}
 	}
 //------------------------------------------------------ Carte
@@ -1685,7 +1685,7 @@ function Bibliographie()
 			var cledeb = cledebutcartea+JSON.parse(localStorage.getItem(clecartea));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomcartea+JSON.parse(localStorage.getItem(clecartea));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));			
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));			
 			}
 	}
 	//Carte internet	
@@ -1744,7 +1744,7 @@ function Bibliographie()
 			var cledeb = cledebutcartea+JSON.parse(localStorage.getItem(clecartea));
 			localStorage.setItem(cledeb, JSON.stringify(debutauteur));
 			var clen = clenomcartea+JSON.parse(localStorage.getItem(clecartea));
-			localStorage.setItem(clen, JSON.stringify(nomauteur));			
+			localStorage.setItem(clen, JSON.stringify(nomauteur+" "+1/anneepub));			
 			}
 	}
 	if ((document.form.livre.checked == false)&&(document.form.chapitre.checked == false)&&(document.form.livrenum.checked == false)
@@ -1808,7 +1808,7 @@ function AffBiblio() {
 			classbibliva[i][0]=biblioa; classbibliva[i][1]=noma; 
 			i += 1; } 	
 			//tri en fonction du Nom d'auteur 
-			TriParCol(classbibliva, 0);
+			TriParCol(classbibliva, 1);
 			//rangement selon le nouvel ordre
 			var classbibliva2 = new Array();
 			var i = 0;
@@ -1858,7 +1858,7 @@ function AffBiblio() {
 			classbibpera[i][0]=biblioa; classbibpera[i][1]=noma;
 			i += 1; } 	
 			//tri en fonction du nom
-			TriParCol(classbibpera, 0);
+			TriParCol(classbibpera, 1);
 			//rangement selon le nouvel ordre
 			var classbibpera2 = new Array();
 			var i = 0;
@@ -1907,7 +1907,7 @@ function AffBiblio() {
 			classbibweba[i][0]=biblioa; classbibweba[i][1]=noma;
 			i += 1; } 	
 			//tri en fonction du nom
-			TriParCol(classbibweba, 0);
+			TriParCol(classbibweba, 1);
 			//rangement selon le nouvel ordre
 			var classbibaweb2 = new Array();
 			var i = 0;
@@ -1956,7 +1956,7 @@ function AffBiblio() {
 			classbibilla[i][0]=biblioa; classbibilla[i][1]=noma;			
 			i += 1; } 	
 			//tri en fonction du nom
-			TriParCol(classbibilla, 0);
+			TriParCol(classbibilla, 1);
 			//rangement selon le nouvel ordre
 			var classbibilla2 = new Array();
 			var i = 0;
@@ -2005,7 +2005,7 @@ function AffBiblio() {
 			classbibva[i][0]=biblioa; classbibva[i][1]=noma;			
 			i += 1; } 	
 			//tri en fonction du nom
-			TriParCol(classbibva, 0);
+			TriParCol(classbibva, 1);
 			//rangement selon le nouvel ordre
 			var classbibva2 = new Array();
 			var i = 0;
@@ -2054,7 +2054,7 @@ function AffBiblio() {
 			classbibma[i][0]=biblioa; classbibma[i][1]=noma;	
 			i += 1; } 	
 			//tri en fonction du nom
-			TriParCol(classbibma, 0);
+			TriParCol(classbibma, 1);
 			//rangement selon le nouvel ordre
 			var classbibma2 = new Array();
 			var i = 0;
@@ -2103,7 +2103,7 @@ function AffBiblio() {
 			classbibrefa[i][0]=biblioa; classbibrefa[i][1]=noma;				
 			i += 1; } 	
 			//tri en fonction du nom
-			TriParCol(classbibrefa, 0);
+			TriParCol(classbibrefa, 1);
 			//rangement selon le nouvel ordre
 			var classbibrefa2 = new Array();
 			var i = 0;
@@ -2152,7 +2152,7 @@ function AffBiblio() {
 			classbibinta[i][0]=biblioa; classbibinta[i][1]=noma;					
 			i += 1; } 	
 			//tri en fonction du nom
-			TriParCol(classbibinta, 0);
+			TriParCol(classbibinta, 1);
 			//rangement selon le nouvel ordre
 			var classbibinta2 = new Array();
 			var i = 0;
@@ -2201,7 +2201,7 @@ function AffBiblio() {
 			classbibcarta[i][0]=biblioa; classbibcarta[i][1]=noma;							
 			i += 1; } 	
 			//tri en fonction du nom
-			TriParCol(classbibcarta, 0);
+			TriParCol(classbibcarta, 1);
 			//rangement selon le nouvel ordre
 			var classbibcarta2 = new Array();
 			var i = 0;
@@ -2277,7 +2277,7 @@ a:link {
 
 	<table style="border-collapse: collapse; width:590px;" cellpadding="4;"><tbody><tr><td>
         <h2 style="">Réaliser une Bibliographie en 4 étapes</h2>
-		<div align="center"><i>Version du 30 août 2020</i></div>
+		<div align="center"><i>Version du 1er septembre 2020</i></div>
 		<div align="center">Testé sous Firefox et Chrome</div>
 		</td></tr></tbody></table>
 		<br>&#x270B; <b>Aide à l'utilisation :</b><br><div align="center"><iframe width="300" src="https://www.youtube.com/embed/11JOrpAxTbc"  
@@ -2991,7 +2991,12 @@ a:link {
 		  <div id="bibcarte"></div>
 		  <div id="bibcarta"></div>	  
 </div>
-
+<b>Rangement des références :</b>
+<ol><li>Tri par support, puis, pour chaque support =</li>
+<li>Documents sans auteur triés par titre (premier mot significatif)</li>
+<li>Documents avec auteur triès par nom d'auteur</li>
+<li>Documents avec même auteur triès par date de publication (plus récent en premier)</li>
+</ol>
 	<table style="border-collapse: collapse; width:100%;"><tbody><tr>
 	<td style="width: 40px; color: darkgreen; text-align: center; font-size: 40px;">&#x2779;</td>
 	<td style="padding-top: 17px; padding-left: 5px;"><h3 align="left">..., enfin, une fois que toutes les références ont été saisies, copiez la Bilbliographie et collez-là dans un Traitement de Texte !</h3></td>
@@ -3024,6 +3029,7 @@ Adaptation des normes Z44-005 et iso690, méthode auteur-date.<br>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 					<td>Exemple proposé pour un document dont aucun émetteur n'est clairement identifié</td></tr>					  
               </tbody></table><br></ul>
+
 		<!--Livre(s)-->
 		<div id="reflivre" style="background-color:#dda0dd;">
 		<table style="width: 100%; border-collapse: collapse;"><tbody><tr>
