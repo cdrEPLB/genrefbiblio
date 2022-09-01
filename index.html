@@ -23,7 +23,7 @@
 	var n = "n° ";
 	var dans = " In : "; 
 	var consult = " Consulté le ";
-	var dispo = "Disponible à : "; 
+	var dispo = "Disponible à "; 
 	var entretien = "Entretien du "; 
 	var realise = "Réalisé le "; 
 	var enligne = " [En ligne]"; 
@@ -988,7 +988,7 @@ function Bibliographie()
 		if (emetteur == 0) { var ref2 = ref2+anneepubp;}
 		var ital = editeurweb.bold(); var ref3 = ital.italics();
 		var ref3 = ref3+enligne;
-		if (datepub == sansdate) { var ref3 = ref3; } else { if (moispub.trim()=="") { var ref3 = ref3;} else { var ref3 = ref3+point+datepub; } }
+		if (datepub == sansdate) { var ref3 = ref3; } else { if (moispub.trim()=="") { var ref3 = ref3;} else { var ref3 = ref3+virgule+datepub; } }
 		var ref3 = ref3+point+dispo+url+crochet1+datecons+crochet2;
 		var support = "Document internet :"
 		var ref = ref1+ref2+point+ref3;	
@@ -1223,7 +1223,7 @@ function Bibliographie()
 		//fin du test
 		var ref2 = ref2+guill1+titreweb+guill2+point;
 		var ital = editeurweb.bold(); var ref3 = ital.italics();
-		var ref3 = ref3+enligne+point;
+		var ref3 = ref3+enligne+virgule;
 		if (datepub.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+datepub+point; }
 		//if (datemaj.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+virgule+datemaj; }
 		var ref3 = ref3+dispo+url+crochet1+datecons+crochet2;
@@ -1351,10 +1351,10 @@ function Bibliographie()
 		if (emetteur == 0) { var ref2 = ref2+anneepubp;}
 		//if (format.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+streaming; } 
 		var ital = editeurweb.bold(); var editeurweb = ital.italics();
-		if (titreweb.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+point+dans+editeurweb+enligne+point; }
+		if (titreweb.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+point+dans+editeurweb+enligne; }
 		//var ref3 = ref3+streaming+point+editeurweb;
-		if (datepub == sansdate) { var ref3 = ref3; } else { if (moispub.trim()=="") { var ref3 = ref3;} else { var ref3 = ref3+virgule+datepub+virgule; } }	
-		var ref3 = ref3+temps+point+dispo+urlyoutube+crochet1+datecons+crochet2;
+		if (datepub == sansdate) { var ref3 = ref3; } else { if (moispub.trim()=="") { var ref3 = ref3;} else { var ref3 = ref3+virgule+datepub; } }	
+		var ref3 = ref3+virgule+temps+point+dispo+urlyoutube+crochet1+datecons+crochet2;
 		var support = "Document vidéo sur Youtube :";
 		var ref = ref1+ref2+ref3;	
 		if (nomauteur.trim() == "") {
@@ -1413,13 +1413,13 @@ function Bibliographie()
 		var ref2 = guill1+titre+guill2;
 		//var ital = titre.bold(); var ref2 = ital.italics();
 		if (emetteur == 0) { var ref2 = ref2+anneepubp;}
-		if (format.trim() == "") { var ref3 = ref3+point; } else { var ref3 = ref3+crochet1+format+crochet2+point; } 
+		if (format.trim() == "") { var ref3 = ref3+point; } else { var ref3 = ref3+crochet1+format+crochet2; } 
 		//if (titreweb.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+dans+titreweb; } 
 		//var ref3 = ref3+editeurweb;
-		if (datepub == sansdate) { var ref3 = ref3; } else { if (moispub.trim()=="") { var ref3 = ref3;} else { var ref3 = ref3+datepub+virgule; } }
-		var ref3 = ref3+temps;
 		var ital = editeurweb.bold(); var editeurweb = ital.italics();
 		if (titreweb.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+point+dans+guill1+titreweb+guill2+virgule+editeurweb+enligne; }
+		if (datepub == sansdate) { var ref3 = ref3; } else { if (moispub.trim()=="") { var ref3 = ref3;} else { var ref3 = ref3+virgule+datepub; } }
+		var ref3 = ref3+virgule+temps;
 		if (url.trim() =="") {alert("Il manque l'adresse URL du document !"); return false;};		
 		var ref3 = ref3+point+dispo+url+crochet1+datecons+crochet2;
 		var support = "Document vidéo sur internet :";
@@ -1569,12 +1569,12 @@ function Bibliographie()
 		var ref1 = guill1+titreweb+guill2;
 		//var ital = titre.bold(); var ref2 = ital.italics();
 		if (emetteur == 0) { var ref2 = ref2+anneepubp;}		
-		if (format.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+crochet1+format+crochet2+point; } 
+		if (format.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+crochet1+format+crochet2; } 
 		//if (titreweb.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+dans+titreweb; } 
-		if (datepub == sansdate) { var ref3 = ref3; } else { if (moispub.trim()=="") { var ref3 = ref3;} else { var ref3 = ref3+datepub+virgule; } }
-		var ref3 = ref3+temps;
 		var ital = editeurweb.bold(); var editeurweb = ital.italics();
-		if (titreweb.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+point+dans+guill1+titreweb+guill2+virgule+editeurweb+enligne; }
+		if (titreweb.trim() == "") { var ref3 = ref3; } else { var ref3 = ref3+point+dans+guill1+titreweb+guill2+point+editeurweb+enligne; }
+		if (datepub == sansdate) { var ref3 = ref3; } else { if (moispub.trim()=="") { var ref3 = ref3;} else { var ref3 = ref3+virgule+datepub; } }
+		var ref3 = ref3+virgule+temps;
 		if (url.trim() =="") {alert("Il manque l'adresse URL du document !"); return false;};		
 		var ref3 = ref3+point+dispo+url+crochet1+datecons+crochet2;
 
@@ -3200,7 +3200,7 @@ Adaptation des normes Z44-005, APA et iso690, méthode auteur-date.<br>
 					<td>Placer devant la référence bibliographique d'un extrait de livre :<br><br>EMETTEUR(S) du chapitre (Année de publication). « Titre du chapitre » . In :</td></tr>
  				<tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
 					<td>« Rapaces diurnes » (2015) [p. 88 à 89]. In : SVENSSON Lars (Textes et cartes), MULLARNEY Killian (Illustrateur) et al. . 
-					<b><i>Le guide ornitho</i></b>. Paris : Delachaux et Niestlé, 03/2015, 448 p. . Guide Delachaux. Réf. : 9782603023938</td></tr>
+					<b><i>Le guide ornitho</i></b>. Paris : Delachaux et Niestlé, 03/2015, 448 p. Guide Delachaux. Réf. : 9782603023938</td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 				<td></td></tr>
               </tbody></table></ul><br>
@@ -3301,13 +3301,13 @@ Adaptation des normes Z44-005, APA et iso690, méthode auteur-date.<br>
 			<ul><table style="width: 100%; border-collapse: collapse;"><tbody>
                 <tr style="background-color:#fff;">
                     <td style="width: 30px;">&#x1F4F6;</td><td style="width: 110px;"></td>
-					<td>EMETTEUR(S) (Année de publication).  « Titre de la page web » . <b><i>Nom du site</b></i> [En ligne].
+					<td>EMETTEUR(S) (Année de publication).  « Titre de la page web » . <b><i>Nom du site</b></i> [En ligne],
 					 Date de publication ou de mise à jour. Disponible à : www.site-internet.fr [Date de consultation]</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
 					<td></td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 				<td>« Gaspillage alimentaire : évaluation de l’application des dispositions prévues par la loi Garot » (2020).
-				<b><i>Ministère de l'Agriculture et de l'Alimentation</b></i>  [En ligne]. 06/08/2020. Disponible à : https://agriculture.gouv.fr [Consulté le 20/08/2020]</td></tr>
+				<b><i>Ministère de l'Agriculture et de l'Alimentation</b></i>  [En ligne], 06/08/2020. Disponible à : https://agriculture.gouv.fr [Consulté le 20/08/2020]</td></tr>
 			 </tbody></table></ul><br>	
 		</div>
 		<!--Illustration-->
@@ -3345,7 +3345,7 @@ Adaptation des normes Z44-005, APA et iso690, méthode auteur-date.<br>
                     <td style="width: 30px;">&#x1F4F6;</td>
 					<td style="width: 110px;"><b>...une page<br>internet</b></td>
 					<td>EMETTEUR(S) de l'illustration. « Titre de l'illustration » (Année de publication) [Type d'illustration].
-					 In : EMETTEUR(S). « Titre de la page web » . <b><i>Nom du site</b></i> [En ligne].
+					 In : EMETTEUR(S). « Titre de la page web » . <b><i>Nom du site</b></i> [En ligne],
 					 date de publication. Disponible à : www.site-internet.fr [Date de consultation]</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
 					<td></td></tr>
@@ -3373,19 +3373,19 @@ Adaptation des normes Z44-005, APA et iso690, méthode auteur-date.<br>
 			<table style="width: 100%; border-collapse: collapse;"><tbody>
                 <tr style="background-color:#fff;">
                     <td style="width: 30px;">&#x1F4F6;</td><td style="width: 110px;"><b>Youtube</b></td>
-					<td>EMETTEUR(S) (Année de publication). <b><i>Titre de La vidéo</b></i> [Streaming].
-					  Editeur, date de publication, durée. Disponible à : www.youtube.com [Date de consultation]</td></tr>
+					<td>EMETTEUR(S) (Année de publication). « Titre de La vidéo».  
+					  In : <b><i>Editeur</b></i> [En ligne], date de publication, durée. Disponible à www.youtube.com [Date de consultation]</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
 					<td>HARMANT Olivier (Journaliste) (2020). « Du télégraphe à Internet : l'incroyable histoire des câbles sous-marins » . 
-					In : <b><i>Les Echos</b></i> [En ligne]. 17min28. Disponible à : www.youtube.com [Consulté le 18/08/2022]</td></tr>
+					In : <b><i>Les Echos</b></i> [En ligne], 17min28. Disponible à www.youtube.com [Consulté le 18/08/2022]</td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
 				<td></td></tr>
 			</tbody></table><br>
 			<table style="width: 100%; border-collapse: collapse;"><tbody>
                 <tr style="background-color:#fff;">
                     <td style="width: 30px;">&#x1F4F6;</td><td style="width: 110px;"><b>Internet</b></td>
-					<td>EMETTEUR(S) (Année de publication). <b><i>Titre de La vidéo</b></i> [Format]. Date de publication, durée. 
-				 In : « Titre page web » , <b><i>Nom du site</b></i> [En ligne]. Disponible à : www.site-internet.fr [Date de consultation]</td></tr>
+					<td>EMETTEUR(S) (Année de publication). <b><i>Titre de La vidéo</b></i> [Format]
+				 In : « Titre page web » , <b><i>Nom du site</b></i> [En ligne], date de publication, durée. Disponible à www.site-internet.fr [Date de consultation]</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
 					<td></td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
@@ -3415,8 +3415,8 @@ Adaptation des normes Z44-005, APA et iso690, méthode auteur-date.<br>
                     <td style="width: 30px;">&#x1F4F6;</td>
 					<td style="width: 110px;"><b>Internet</b></td>
 					<td>EMETTEUR(S) (Année de publication).  <b><i>Titre du morceau</b></i> [Format]. 
-				 date de publication, durée In : « Page web » , <b><i>Nom du site</b></i> [En ligne]. 
-				 Disponible à : www.site-internet [Date de consultation]</td></tr>
+				 In : « Page web » . <b><i>Nom du site</b></i> [En ligne], date de publication, durée.
+				 Disponible à www.site-internet [Date de consultation]</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
 					<td></td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
@@ -3477,14 +3477,19 @@ Adaptation des normes Z44-005, APA et iso690, méthode auteur-date.<br>
                     <td style="width: 30px;">&#x1F4CC;&#x1F4F6;</td>
 					<td style="width: 110px;"><b>Carte<br>internet</b></td>
 					<td>EMETTEUR(S) (Année de publication). <b><i>Titre de la carte</i></b> [Echelle].
-					 In : « Page web » , <b><i>Nom du site</b></i> [En ligne].  Date de publication. Disponible à : www.site-internet [Date de consultation]</td></tr>
+					 In : « Page web » , <b><i>Nom du site</b></i> [En ligne],  Date de publication. Disponible à www.site-internet [Date de consultation]</td></tr>
                 <tr style="background-color:#DFF2FF;"><td>Ex :</td><td>émetteur(s) identifié(s) :</td>
 					<td></td></tr>
 				<tr style="background-color:#A9EAFE;"><td>Ex :</td><td>émetteur non identifié :</td>
-				<td><b><i>Moulins</i></b> (2019) [1:34110]. In : « Carte/Plan Moulins » , <b><i>Géoportail</i></b> [En ligne]. 15/09/2019. Disponible à : https://www.geoportail.gouv.fr/plan/03190/moulins [Consulté le 16/08/2022]</td></tr>
+				<td><b><i>Moulins</i></b> (2019) [1:34110]. In : « Carte/Plan Moulins » , <b><i>Géoportail</i></b> [En ligne], 15/09/2019. Disponible à : https://www.geoportail.gouv.fr/plan/03190/moulins [Consulté le 16/08/2022]</td></tr>
 			</tbody></table></ul><br>
 		</div>
 </div>
+
+ 
 	</font>
+
+		
+		
   </body>
 </html>
