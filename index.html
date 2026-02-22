@@ -1,8 +1,147 @@
 <!DOCTYPE html>
 <html>
 	<head>
-    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<title>Générateur de Référence Bibliographique</title>
+	<style type="text/css">
+		/* Styles généraux */
+		H2 {FONT-SIZE: 18pt; color: darkgreen; text-align: center;}
+		H3 {FONT-SIZE: 15pt; COLOR: darkgreen;}
+		H4 {FONT-SIZE: 14pt; COLOR: #FF0000;}
+		
+		/* Structure de base */
+		html, body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, Helvetica, sans-serif;
+			max-width: 1400px;
+			margin: 0 auto;
+		}
+		
+		/* Colonnes */
+		#gauche {
+			margin-left: 10px;
+			margin-right: 10px;
+			width: 675px;
+			height: 100%;
+			float: left;
+			text-align: left;
+		}
+		
+		#droite {
+			margin-left: 10px;
+			width: 675px;
+			float: left;
+			position: relative;
+			text-align: left;
+		}
+		
+		/* Pour que le contenu masqué soit bien invisible */
+		#droite .etape-contenu > div[style*="background-color:darkgreen"] {
+				transition: display 0.3s ease;
+			}
+					
+		#modele {
+			width: 100%;
+			float: left;
+			text-align: left;
+			margin-top: 30px;
+		}
+		
+		/* Bibliographie */
+		#bib {
+			margin: 5px;
+			padding: 5px;
+			background-color: Moccasin;
+			line-height: 1.5em;
+			text-align: left;
+			border-radius: 0 0 10px 10px;
+		}
+		
+		/* Styles pour les encadrés */
+		.etape-encadre {
+			border: 2px solid darkgreen;
+			border-radius: 15px;
+			margin: 15px 0;
+			padding: 5px;
+			background-color: #f9fff9;
+			box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+		}
+		
+		.etape-titre {
+			background-color: darkgreen;
+			color: white;
+			padding: 8px 15px;
+			margin: -5px -5px 10px -5px;
+			border-radius: 13px 13px 0 0;
+			font-weight: bold;
+			font-size: 1.2em;
+			display: flex;
+			align-items: center;
+		}
+		
+		.etape-numero {
+			background-color: white;
+			color: darkgreen;
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-right: 10px;
+			font-weight: bold;
+			font-size: 1.2em;
+		}
+		
+		.etape-contenu {
+			padding: 10px;
+		}
+		
+		/* Autres styles */
+		[placeholder] {
+			color: maroon;
+			opacity: .9;
+		}
+		
+		[required] {
+			border: 2px dotted orange;
+			background-color: Moccasin;
+		}
+		
+		a:link { 
+			text-decoration:none; 
+			color:#003300;
+		}
+		
+		/* Améliorations visuelles */
+		table {
+			border-collapse: collapse;
+		}
+		
+		.info-bulle {
+			background-color: #e8f0e8;
+			border-left: 4px solid darkgreen;
+			padding: 8px 15px;
+			margin: 10px 0;
+			border-radius: 0 10px 10px 0;
+		}
+		
+		.bouton-ajout {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 25px;
+			cursor: pointer;
+			font-size: 1.1em;
+			transition: background-color 0.3s;
+		}
+		
+		.bouton-ajout:hover {
+			background-color: #45a049;
+		}
+	</style>
 	</head>
   <body>     
 <script type="text/javascript">
@@ -1809,6 +1948,7 @@ function Bibliographie()
 		&&(document.form.carteweb.checked == false)) 
 		{ 	alert("Choississez un type de document !"); 	return false	}
 //------------------------------------------------------
+viderChamps();
 AffBiblio();
 }
 //------------------------------------------------------
@@ -2263,62 +2403,193 @@ function AffBiblio() {
 
 }
 
+
+//------------------------------------------------------
+// Fonction pour exporter la bibliographie en RTF (VERSION FINALE CORRIGÉE)
+//------------------------------------------------------
+function exporterRTF() {
+    // En-tête RTF avec déclaration des polices
+    var rtf = '{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1036\n';
+    rtf += '{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\n';
+    rtf += '\\viewkind4\\uc1\\pard\\f0\\fs24\\ql\n\n';
+    
+    // Récupérer le contenu de la div bib
+    var bibDiv = document.getElementById('bib');
+    if (!bibDiv) {
+        alert('Zone bibliographie non trouvée !');
+        return;
+    }
+    
+    // Parcourir tous les enfants de bibDiv
+    var children = bibDiv.childNodes;
+    var enCours = '';
+    var titreSectionActuel = '';
+    
+    for (var i = 0; i < children.length; i++) {
+        var node = children[i];
+        
+        if (node.nodeType === 1) { // Element HTML
+            var tagName = node.nodeName.toLowerCase();
+            
+            // Titre principal h3
+            if (tagName === 'h3') {
+                var texteTitre = node.innerText || node.textContent;
+                rtf += '\\b ' + texteTitre + '\\b0\\par\n\n';
+            }
+            // Titres de sections (balises b avec couleur maroon)
+            else if (tagName === 'b' && node.style && node.style.color === 'maroon') {
+                var texteTitre = node.innerText || node.textContent;
+                rtf += '\\b ' + texteTitre + '\\b0\\par\n';
+            }
+            // Div de contenu
+            else if (tagName === 'div' && node.id) {
+                var contenuDiv = traiterContenuDiv(node);
+                if (contenuDiv.trim() !== '') {
+                    rtf += contenuDiv;
+                }
+            }
+            // Sauts de ligne
+            else if (tagName === 'br') {
+                rtf += '\\par\n';
+            }
+            // Texte directement dans bib (comme les espaces)
+            else {
+                var texte = node.innerText || node.textContent;
+                if (texte.trim() !== '') {
+                    rtf += texte;
+                }
+            }
+        }
+        else if (node.nodeType === 3) { // Texte simple
+            var texte = node.nodeValue;
+            if (texte.trim() !== '') {
+                rtf += texte;
+            }
+        }
+    }
+    
+    if (rtf.indexOf('\\par') === -1) {
+        alert('La bibliographie est vide !');
+        return;
+    }
+    
+    rtf += '}';
+    
+    // Nettoyer les balises HTML restantes et appliquer l'échappement des accents
+    rtf = nettoyerRTF(rtf);
+    
+    // Télécharger le fichier
+    var blob = new Blob([rtf], { type: 'application/rtf' });
+    var url = window.URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'bibliographie.rtf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+}
+
+
+//------------------------------------------------------
+// Fonction pour vider tous les champs du formulaire
+//------------------------------------------------------
+function viderChamps() {
+    // Liste de tous les IDs des champs à vider
+    var champs = [
+        'nom', 'prenom', 'fonct', 'nom2', 'prenom2', 'fonct2',
+        'titre', 'titweb', 'titcoll', 'titarticle', 'titperiod',
+        'def', 'dico', 'encyclo', 'lieuedit', 'edit', 'editweb',
+        'jpubli', 'mpubli', 'apubli', 'jpublii', 'mpublii', 'apublii',
+        'dateconsult', 'numero', 'totpages', 'qqpages', 'duree',
+        'urlweb', 'isbn', 'support', 'forma', 'nomill', 'prenomill',
+        'titreill', 'formatill'
+    ];
+    
+    // Parcourir tous les champs et les vider
+    for (var i = 0; i < champs.length; i++) {
+        var champ = document.getElementById(champs[i]);
+        if (champ) {
+            champ.value = '';
+        }
+    }
+    
+    // Remettre le select "abonn" à sa valeur par défaut
+    var abonn = document.getElementById('abonn');
+    if (abonn) {
+        abonn.value = '0';
+    }
+    
+    // Remettre le select "etalii" à sa valeur par défaut
+    var etalii = document.getElementById('etalii');
+    if (etalii) {
+        etalii.value = '0';
+    }
+    
+    // Décocher tous les boutons radio
+    var radios = document.getElementsByName('typedoc');
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].checked = false;
+    }
+    
+    // Changer le titre de l'étape 2
+    var titreEtape2 = document.querySelector('#droite .etape-titre');
+    if (titreEtape2) {
+        titreEtape2.innerHTML = '<span class="etape-numero">2</span> Pour ajouter un document sélectionnez un support !';
+    }
+    
+    // MASQUER TOUT LE CONTENU DE L'ÉTAPE 2 (le formulaire)
+    var contenuEtape2 = document.querySelector('#droite .etape-contenu');
+    if (contenuEtape2) {
+        contenuEtape2.style.display = 'none';
+    }
+}
+
+//------------------------------------------------------
+// Fonction pour afficher/masquer le formulaire
+//------------------------------------------------------
+function verifierSelection() {
+    var radios = document.getElementsByName('typedoc');
+    var contenuEtape2 = document.querySelector('#droite .etape-contenu');
+    var titreEtape2 = document.querySelector('#droite .etape-titre');
+    var unRadioCochie = false;
+    
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            unRadioCochie = true;
+            break;
+        }
+    }
+    
+    if (unRadioCochie) {
+        // AFFICHER tout le contenu de l'étape 2
+        if (contenuEtape2) {
+            contenuEtape2.style.display = 'block';
+        }
+        // Changer le titre
+        if (titreEtape2) {
+            titreEtape2.innerHTML = '<span class="etape-numero">2</span> Renseignez les éléments d\'identité du document et validez !';
+        }
+    } else {
+        // Changer le titre
+        if (titreEtape2) {
+            titreEtape2.innerHTML = '<span class="etape-numero">2</span> Pour ajouter un document sélectionnez un support !';
+        }
+        // MASQUER tout le contenu de l'étape 2
+        if (contenuEtape2) {
+            contenuEtape2.style.display = 'none';
+        }
+    }
+}
+
+// Au chargement de la page, masquer la colonne droite si aucun bouton n'est coché
+window.onload = function() {
+    verifierSelection();
+};
+
 </script> 
 
-<style type="text/css">
-H2 {FONT-SIZE: 18pt;color: darkgreen; text-align: center;}
-H3 {FONT-SIZE: 15pt;COLOR: darkgreen};
-H4 {FONT-SIZE: 14pt;COLOR: #FF0000};
-Width: 1200px;
-Max-Width: 1200px;
-Min-Width: 1200px;
-{
-	margin: 0;
-	padding: 0;
-}
-html, body {	
-}
-#gauche {
-	width: 600px;
-	height: 100%;
-	float: left;
-	text-align: left;
-}
-#droite {
-	width: 600px;
-	float: left;
-	position:relative;
-	text-align: left;
-}
-#modele {
-	width: 100%;
-	float: left;
-	text-align: left;
-}
-#bib {
-	margin-top: 5px;
-	margin-bottom: 2px;
-	padding-left: 2px;
-	padding-right: 2px;
-	width: 580px;
-	float: left;
-	background-color: Moccasin;
-	line-height: 1.5em;
-	text-align: left;
-}
-[placeholder] {
-  color: maroon;
-  opacity: .9;
-}
-[required] {
-   border: 2px dotted orange;
-   background-color: Moccasin;
-}
-a:link { 
- text-decoration:none; 
- color:#003300;
-} 
-</style> 
+
 
 <font face="Arial, Helvetica, sans-serif">
 <form name="form">
@@ -2326,45 +2597,30 @@ a:link {
 
 	<table style="border-collapse: collapse; width:590px;" cellpadding="4;"><tbody><tr><td>
         <h2 style="">Réaliser une Bibliographie en 4 étapes</h2>
-		<div align="center"><i>Version du 1er septembre 2022</i></div>
+		<div align="center"><i>Version du 22/02/2026</i></div>
 		<div align="center">Outil testé sous Firefox et Chrome</div>
 		</td></tr></tbody></table>
-		<br>&#x270B; <font style="color:#b75800;"><b>Aide à l'utilisation :</b></font><br>
-	<table style="border-collapse: collapse; width:100%;"><tbody>
-		<tr><td style="width: 40px; color: darkgreen; text-align: center; font-size: 20px;"><div id="choix">&#x2776;</div></td>
-		<td style="padding-top: 17px; padding-left: 5px;">Choisissez le <font style="color:darkgreen;"><b>support du document</b></font>
-		source de l'information 
-		<br>en sélectionnant le <font style="color:darkgreen;"><b>bouton blanc</b></font> placé devant....</td> </tr>
-		<tr> <td style="width: 40px; color: darkgreen; text-align: center; font-size: 20px;">&#x2777;</td>
-		<td style="padding-top: 17px; padding-left: 5px;">..., puis, renseignez les éléments d'<font style="color:darkgreen;"><b>identité du document</b></font>...</td></tr>
-		<tr><td style="width: 40px; color: darkgreen; text-align: center; font-size: 20px;">&#x2778;</td>
-		<td style="padding-top: 17px; padding-left: 5px;">... ensuite, lancez la construction de la Bibliographie normée en 
-		<br><font style="color:darkgreen;"><b>ajoutant chaque référence</b></font> à l'aide du <font style="color:darkgreen;"><b>bouton</b></font>...</td></tr>
-		<tr><td style="width: 40px; color: darkgreen; text-align: center; font-size: 20px;">&#x2779;</td>
-		<td style="padding-top: 17px; padding-left: 5px;">..., enfin, une fois que toutes les références ont été saisies, copiez la Bilbliographie et collez-là dans un Traitement de Texte !</td></tr>	
-	</tbody> </table>		
 		<br>
-		<!-- <div align="center"><iframe width="300" src="https://www.youtube.com/embed/11JOrpAxTbc"  
-		frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>-->
-		&#x270B; <font style="color:#b75800;"><b>Informations :</b> </font>
-					<ul><li>accès aux <font style="color:darkgreen;"><b>normes bibliographiques</b></font> utilisées pour les supports &#x2192;<a href="#modele" >&#x1F4DC;</a> 
-					<br>ou en cliquant sur le logo ou le nom du support (&#128218; &#128196; &#128271;...)
-					<br>dans le tableau suivant</li>
-					<li><font style="color:darkgreen;"><b>retour</b></font> au début de la page &#x2192; &#x267B; </li>
-					</ul>
-	<table style="border-collapse: collapse; width:100%;"><tbody><tr>
-		<td style="width: 40px; color: darkgreen; text-align: center; font-size: 40px;"><div id="choix">&#x2776;</div></td>
-		<td style="padding-top: 17px; padding-left: 5px;"><h3 align="left">Choisissez le support du document source de l'information...</h3></td>
-		 </tr></tbody> </table>
-    <table style="border-collapse: collapse; width: 595px; height: 439px;"  cellpadding="7;">
-            <tbody>
-            <!-- livre -->
-            <tr style="background-color: #dda0dd; ">
-                <td style="text-align: center; font-size: 200%;"><a href="#reflivre" >&#128218;</a></td>
-                <td><a href="#reflivre" ><b>Livre</b></a></td>
-                <td>
-				
-					<a href="#identite"><input name="typedoc" value="Livre" onclick="
+		
+	<!-- ÉTAPE 1 : Encadré avec coins arrondis -->
+	<div class="etape-encadre">
+		<div class="etape-titre">
+			<span class="etape-numero">1</span>
+			Sélectionnez le support du document
+		</div>
+		<div class="etape-contenu">
+			<div class="info-bulle">
+				<b>✋ Aide :</b> Sélectionnez le <b style="color:darkgreen;">bouton blanc</b> placé devant le type de document.
+			</div>
+			<!-- Le tableau des supports reste inchangé, juste intégré dans l'encadré -->
+			<table style="border-collapse: collapse; width: 100%; height: 439px;" cellpadding="7;">
+				<tbody>
+				<!-- livre -->
+				<tr style="background-color: #dda0dd; ">
+					<td style="text-align: center; font-size: 200%;"><a href="#reflivre" >📚</a></td>
+					<td><a href="#reflivre" ><b>Livre</b></a></td>
+					<td>
+						<a href="#identite"><input name="typedoc" value="Livre" onclick="
 	if (this.checked)  { 
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2381,9 +2637,9 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='inline'; this.form.qqpages.style.display='inline'; 
 	this.form.urlweb.style.display='none'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='inline';} return true;"
-                    id="livre" type="radio" /></a>&#128196; entier ou extrait(s) (papier)<br>
-                  <a href="#identite"><input name="typedoc" value="Livrenum" onclick="
+	this.form.isbn.style.display='inline';} verifierSelection(); return true;"
+						id="livre" type="radio" /></a>📄 entier ou extrait(s) (papier)<br>
+					  <a href="#identite"><input name="typedoc" value="Livrenum" onclick="
 	if (this.checked)  {  
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none';
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2400,9 +2656,9 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='inline'; this.form.qqpages.style.display='inline';
 	this.form.urlweb.style.display='inline';  
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; 
-	this.form.isbn.style.display='inline';} return true;"
-                    id="livrenum" type="radio" /></a>&#128246; numérique en ligne : entier ou extrait(s) 
-					<div style="background-color: #ccffcc; "><a href="#identite" ><input name="typedoc" value="Chapitre" onclick=" 
+	this.form.isbn.style.display='inline';} verifierSelection(); return true;"
+						id="livrenum" type="radio" /></a>🌐 numérique en ligne : entier ou extrait(s) 
+						<div style="background-color: #ccffcc; "><a href="#identite" ><input name="typedoc" value="Chapitre" onclick=" 
 	if (this.checked)  {  
 	this.form.nomill.style.display='inline'; this.form.prenomill.style.display='inline'; this.form.titreill.style.display='inline';
 	this.form.jpublii.style.display='inline'; this.form.mpublii.style.display='inline'; this.form.apublii.style.display='inline';
@@ -2419,17 +2675,17 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; 
 	this.form.urlweb.style.display='none'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='inline';} return true;"
-                    id="chapitre" type="radio" /></a>&#128196; chapitre (papier)</div>					
-				</td>
-            </tr>
-            <!-- Article de périodique -->
-            <tr style="background-color: #2DFB00;">
-                <td style="text-align: center; font-size: 200%;"><a href="#refperiodique" >&#128240;</a></td>
-                <td><a href="#refperiodique" ><b>Article de<br>périodique</b></a><br>
-				<div style="font-size:13px;">(journal, magazine)</div></td>              
-  			    <td>
-                <a href="#identite"><input name="typedoc" value="Article" onclick="
+	this.form.isbn.style.display='inline';} verifierSelection(); return true;"
+						id="chapitre" type="radio" /></a>📄 chapitre (papier)</div>					
+					</td>
+				</tr>
+				<!-- Article de périodique -->
+				<tr style="background-color: #2DFB00;">
+					<td style="text-align: center; font-size: 200%;"><a href="#refperiodique" >📰</a></td>
+					<td><a href="#refperiodique" ><b>Article de<br>périodique</b></a><br>
+					<div style="font-size:13px;">(journal, magazine)</div></td>              
+					<td>
+					<a href="#identite"><input name="typedoc" value="Article" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2446,10 +2702,9 @@ a:link {
 	this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; 
 	this.form.urlweb.style.display='none'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='none'; }  return true;"
-                      id="article" type="radio" /></a>&#128196; papier <br>
- 				
-					<a href="#identite"><input name="typedoc" value="Articleint" onclick="
+	this.form.isbn.style.display='none'; } verifierSelection();  return true;"
+						  id="article" type="radio" /></a>📄 papier <br>
+						<a href="#identite"><input name="typedoc" value="Articleint" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2466,18 +2721,17 @@ a:link {
 	this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; 
 	this.form.urlweb.style.display='inline'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='none';}  return true;"
-                      id="articleint" type="radio" /></a>&#128246; internet 
-                </td>
-            </tr>
-			
-	       <!-- Doc de reference -->
-            <tr style="background-color: #77B5FE;;">
-                <td style="text-align: center; font-size: 200%;"><a href="#refdocref" >&#128271;</a></td>
-				<td><a href="#refdocref" ><b>Document<br>de référence</b><br></a></td>
-                <td>
+	this.form.isbn.style.display='none';} verifierSelection();  return true;"
+						  id="articleint" type="radio" /></a>🌐 internet 
+					</td>
+				</tr>
 				
-				<a href="#identite"> <input name="typedoc" value="Dict" onclick="
+				<!-- Doc de reference -->
+				<tr style="background-color: #77B5FE;;">
+					<td style="text-align: center; font-size: 200%;"><a href="#refdocref" >🔏</a></td>
+					<td><a href="#refdocref" ><b>Document<br>de référence</b><br></a></td>
+					<td>
+					<a href="#identite"> <input name="typedoc" value="Dict" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2494,17 +2748,16 @@ a:link {
 	this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; 
 	this.form.urlweb.style.display='none'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='inline';} return true;"
-                    id="dict" type="radio" /></a>&#128218; définition dans un dictionnaire papier <br>
-
-				<a href="#identite"><input name="typedoc" value="Dictint" onclick="
+	this.form.isbn.style.display='inline';} verifierSelection(); return true;"
+						id="dict" type="radio" /></a>📚 définition dans un dictionnaire papier <br>
+					<a href="#identite"><input name="typedoc" value="Dictint" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
 	this.form.formatill.style.display='none'; 
 	this.form.nom.style.display='inline'; this.form.prenom.style.display='inline'; this.form.fonct.style.display='inline';
 	this.form.nom2.style.display='inline'; this.form.prenom2.style.display='inline'; this.form.fonct2.style.display='inline';
-  	this.form.titre.style.display='none'; this.form.titcoll.style.display='none';
+	this.form.titre.style.display='none'; this.form.titcoll.style.display='none';
 	this.form.lieuedit.style.display='inline';
 	this.form.titarticle.style.display='none'; this.form.titweb.style.display='none';
 	this.form.def.style.display='inline'; this.form.dico.style.display='inline'; this.form.encyclo.style.display='none'; 
@@ -2514,10 +2767,9 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='inline';  
 	this.form.duree.style.display='none';  this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='none';} return true;"
-                    id="dictint" type="radio" /></a>&#128246; définition dans un dictionnaire sur internet<br>
-
-				<a href="#identite"><input name="typedoc" value="Encyclop" onclick="
+	this.form.isbn.style.display='none';} verifierSelection(); return true;"
+						id="dictint" type="radio" /></a>🌐 définition dans un dictionnaire sur internet<br>
+					<a href="#identite"><input name="typedoc" value="Encyclop" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2534,9 +2786,9 @@ a:link {
 	this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; 
 	this.form.urlweb.style.display='none';
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='inline';} return true;"
-                    id="encyclop" type="radio" /></a>&#128218; article d'encyclopédie papier <br>
-                <a href="#identite"><input name="typedoc" value="Universal" onclick="
+	this.form.isbn.style.display='inline';} verifierSelection(); return true;"
+						id="encyclop" type="radio" /></a>📚 article d'encyclopédie papier <br>
+					<a href="#identite"><input name="typedoc" value="Universal" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2553,17 +2805,16 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='none'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='none'; } return true;"
-                    id="universal" type="radio" /></a>&#128246; article de l'Encyclopédie Universalis Education<br>
-                </td>
-            </tr>
-            <!-- Page web -->
-            <tr style="background-color: #F3D617;">
-                <td style="text-align: center; font-size: 200%;"><a href="#refinternet">&#128246;</a></td>
-                <td><a href="#refinternet"><b>Page internet<br></b></a></td>
-                <td>
-				
-				<a href="#identite"> <input name="typedoc" value="Web" onclick="
+	this.form.isbn.style.display='none'; } verifierSelection(); return true;"
+						id="universal" type="radio" /></a>🌐 article de l'Encyclopédie Universalis Education<br>
+					</td>
+				</tr>
+				<!-- Page web -->
+				<tr style="background-color: #F3D617;">
+					<td style="text-align: center; font-size: 200%;"><a href="#refinternet">🌐</a></td>
+					<td><a href="#refinternet"><b>Page internet<br></b></a></td>
+					<td>
+					<a href="#identite"> <input name="typedoc" value="Web" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none';
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2580,17 +2831,16 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='inline'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none';  this.form.forma.style.display='none';  
-	this.form.isbn.style.display='none';} return true;"
-                    id="web" type="radio" /></a> 
-					
-				</td>
-            </tr>
-            <!-- Illustration -->
-            <tr style="background-color:#FF7F00;">
-                <td style="text-align: center; font-size: 200%;"><a href="#refillustr">&#127943;</a></td>           
-                <td><a href="#refillustr"><b>Illustration<br>dans...</b></a></td>
-                <td>
-                <div style="background-color: #ccffcc;"><a href="#identite"><input name="typedoc" value="Illbook" onclick="
+	this.form.isbn.style.display='none';} verifierSelection(); return true;"
+						id="web" type="radio" /></a> 
+					</td>
+				</tr>
+				<!-- Illustration -->
+				<tr style="background-color:#FF7F00;">
+					<td style="text-align: center; font-size: 200%;"><a href="#refillustr">🎨</a></td>           
+					<td><a href="#refillustr"><b>Illustration<br>dans...</b></a></td>
+					<td>
+					<div style="background-color: #ccffcc;"><a href="#identite"><input name="typedoc" value="Illbook" onclick="
 	if (this.checked)  {  
 	this.form.nomill.style.display='inline'; this.form.prenomill.style.display='inline'; this.form.titreill.style.display='inline'; 
 	this.form.jpublii.style.display='inline'; this.form.mpublii.style.display='inline'; this.form.apublii.style.display='inline';
@@ -2607,10 +2857,9 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; 
 	this.form.urlweb.style.display='none';
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='inline';} return true;"
-                      id="illlivre" type="radio" /></a>&#128218; un livre <br>
-				
-				<a href="#identite"><input name="typedoc" value="Illperiod" onclick="
+	this.form.isbn.style.display='inline';} verifierSelection(); return true;"
+						  id="illlivre" type="radio" /></a>📚 un livre <br>
+					<a href="#identite"><input name="typedoc" value="Illperiod" onclick="
 	if (this.checked) {  
 	this.form.nomill.style.display='inline'; this.form.prenomill.style.display='inline'; this.form.titreill.style.display='inline'; 
 	this.form.jpublii.style.display='inline'; this.form.mpublii.style.display='inline'; this.form.apublii.style.display='inline';
@@ -2627,10 +2876,10 @@ a:link {
 	this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='inline'; 
 	this.form.urlweb.style.display='none'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='none';}  return true;"
-                      id="illarticle" type="radio" /></a>&#128240; un périodique papier <br>
-               
-			   <a href="#identite"><input name="typedoc" value="Illnet" onclick="
+	this.form.isbn.style.display='none';} verifierSelection();  return true;"
+						  id="illarticle" type="radio" /></a>📰 un périodique papier <br>
+				   
+				   <a href="#identite"><input name="typedoc" value="Illnet" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='inline'; this.form.prenomill.style.display='inline'; this.form.titreill.style.display='inline'; 
 	this.form.jpublii.style.display='inline'; this.form.mpublii.style.display='inline'; this.form.apublii.style.display='inline';
@@ -2647,16 +2896,16 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='inline'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='none';  
-	this.form.isbn.style.display='none';} return true;"
-                      id="illweb" type="radio" /></a>&#128246; une page internet </div>
-                </td>
-            </tr>
-            <!-- Video -->
-            <tr style="background-color:#EAECFF;">
-                <td style="text-align: center; font-size: 200%;"><a href="#refvideo">&#127916;</a></td>
-                <td><a href="#refvideo"><b>Vidéo</b></a></td>
-                <td>
-                <a href="#identite"><input name="typedoc" value="Video" onclick="
+	this.form.isbn.style.display='none';} verifierSelection(); return true;"
+						  id="illweb" type="radio" /></a>🌐 une page internet </div>
+					</td>
+				</tr>
+				<!-- Video -->
+				<tr style="background-color:#EAECFF;">
+					<td style="text-align: center; font-size: 200%;"><a href="#refvideo">🎬</a></td>
+					<td><a href="#refvideo"><b>Vidéo</b></a></td>
+					<td>
+					<a href="#identite"><input name="typedoc" value="Video" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2673,9 +2922,9 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='none';  
 	this.form.duree.style.display='inline'; this.form.support.style.display='inline'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='inline'; } return true;"
-                      id="video" type="radio" /></a>&#128187; enregistrement physique (DVD, ...) <br>
-				<a href="#identite"><input name="typedoc" value="Video" onclick="
+	this.form.isbn.style.display='inline'; } verifierSelection(); return true;"
+						  id="video" type="radio" /></a>💿 enregistrement physique (DVD, ...) <br>
+					<a href="#identite"><input name="typedoc" value="Video" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2692,9 +2941,9 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='none'; 
 	this.form.duree.style.display='inline'; this.form.support.style.display='none'; this.form.forma.style.display='none'; 
-	this.form.isbn.style.display='none';} return true;"
-                      id="videoy" type="radio" /></a>&#128246; Youtube
-				<a href="#identite"><input name="typedoc" value="Video" onclick="
+	this.form.isbn.style.display='none';} verifierSelection(); return true;"
+						  id="videoy" type="radio" /></a>🌐 Youtube
+					<a href="#identite"><input name="typedoc" value="Video" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2711,16 +2960,16 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='inline'; this.form.titweb.style.display='inline'; 
 	this.form.duree.style.display='inline'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; 
-	this.form.isbn.style.display='none';} return true;"
-                      id="videoweb" type="radio" /></a>&#128246; internet
-                </td>
-            </tr>
-            <!-- Musique -->
-            <tr style="background-color:#649B88;">
-                <td style="text-align: center; font-size: 200%;"><a href="#refmusique">&#127925;</a></td>
-				<td><a href="#refmusique"><b>Musique<br>Chanson</b></a></td>
-                <td>
-                <a href="#identite"><input name="typedoc" value="Music" onclick="
+	this.form.isbn.style.display='none';} verifierSelection(); return true;"
+						  id="videoweb" type="radio" /></a>🌐 internet
+					</td>
+				</tr>
+				<!-- Musique -->
+				<tr style="background-color:#649B88;">
+					<td style="text-align: center; font-size: 200%;"><a href="#refmusique">🎵</a></td>
+					<td><a href="#refmusique"><b>Musique<br>Chanson</b></a></td>
+					<td>
+					<a href="#identite"><input name="typedoc" value="Music" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='inline'; this.form.prenomill.style.display='inline'; this.form.titreill.style.display='inline'; 
 	this.form.jpublii.style.display='inline'; this.form.mpublii.style.display='inline'; this.form.apublii.style.display='inline';
@@ -2737,9 +2986,9 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='none';  
 	this.form.duree.style.display='inline'; this.form.support.style.display='inline'; this.form.forma.style.display='inline'; 
-	this.form.isbn.style.display='inline';} return true;"
-                      id="music" type="radio" /></a>&#128187; enregistrement physique (Vinyl, CD...) <br>
-                <a href="#identite"><input name="typedoc" value="Music" onclick="
+	this.form.isbn.style.display='inline';} verifierSelection(); return true;"
+						  id="music" type="radio" /></a>💿 enregistrement physique (Vinyl, CD...) <br>
+					<a href="#identite"><input name="typedoc" value="Music" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none';
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2756,18 +3005,16 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='inline'; 
 	this.form.duree.style.display='inline'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; 
-	this.form.isbn.style.display='none';} return true;"
-                      id="musicweb" type="radio" /></a>&#128246; internet
-                </td>
-            </tr>
-     
-            <!-- Interview -->
-            <tr style="background-color:#01D758;">
-				<td style="text-align: center; font-size: 200%;"><a href="#refinterview">&#127908;</a></td>
-                <td><a href="#refinterview"><b>Interview<br>Podcast</b></a></td>
-                <td>
-
-				<a href="#identite"><input name="typedoc" value="Interview" onclick="
+	this.form.isbn.style.display='none';} verifierSelection(); return true;"
+						  id="musicweb" type="radio" /></a>🌐 internet
+					</td>
+				</tr>
+				<!-- Interview -->
+				<tr style="background-color:#01D758;">
+					<td style="text-align: center; font-size: 200%;"><a href="#refinterview">🎤</a></td>
+					<td><a href="#refinterview"><b>Interview<br>Podcast</b></a></td>
+					<td>
+					<a href="#identite"><input name="typedoc" value="Interview" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2784,18 +3031,16 @@ a:link {
 	this.form.numero.style.display='none'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='inline'; 
 	this.form.duree.style.display='inline'; this.form.support.style.display='inline'; this.form.forma.style.display='inline';  
-	this.form.isbn.style.display='none';} return true;"
-                      id="interview" type="radio" /></a>
-
-                </td>
-			</tr >
-			            <!-- Carte -->
-            <tr style="background-color:#D7E14E;" >
-				<td style="text-align: center; font-size: 200%;"><a href="#refinterview">&#128204;</a></td>
-                <td><a href="#refinterview"><b>Carte</b></a></td>
-                <td>
-
-                <div style="background-color:#D7E14E;"><a href="#identite"> <input name="typedoc" value="Carte" onclick="
+	this.form.isbn.style.display='none';} verifierSelection(); return true;"
+						  id="interview" type="radio" /></a>
+					</td>
+				</tr >
+				<!-- Carte -->
+				<tr style="background-color:#D7E14E;" >
+					<td style="text-align: center; font-size: 200%;"><a href="#refinterview">📍</a></td>
+					<td><a href="#refinterview"><b>Carte</b></a></td>
+					<td>
+					<div style="background-color:#D7E14E;"><a href="#identite"> <input name="typedoc" value="Carte" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none';
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2812,9 +3057,9 @@ a:link {
 	this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='none'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; 
-	this.form.isbn.style.display='inline';} return true;"
-                      id="carte" type="radio" /></a>&#128204;&#128196; carte papier <br>
-				<a href="#identite">  <input name="typedoc" value="Carteweb" onclick="
+	this.form.isbn.style.display='inline';} verifierSelection(); return true;"
+						  id="carte" type="radio" /></a>📍📄 carte papier <br>
+					<a href="#identite">  <input name="typedoc" value="Carteweb" onclick="
 	if (this.checked) {   
 	this.form.nomill.style.display='none'; this.form.prenomill.style.display='none'; this.form.titreill.style.display='none'; 
 	this.form.jpublii.style.display='none'; this.form.mpublii.style.display='none'; this.form.apublii.style.display='none';
@@ -2831,279 +3076,300 @@ a:link {
 	this.form.numero.style.display='inline'; this.form.totpages.style.display='none'; this.form.qqpages.style.display='none'; 
 	this.form.urlweb.style.display='inline'; 
 	this.form.duree.style.display='none'; this.form.support.style.display='none'; this.form.forma.style.display='inline'; 
-	this.form.isbn.style.display='none';} return true;"
-                      id="carteweb" type="radio" /></a>&#128204;&#128246; carte sur internet</div>
-                </td>
-			</tr>
-            </tbody>
-          </table>
+	this.form.isbn.style.display='none';} verifierSelection(); return true;"
+						  id="carteweb" type="radio" /></a>📍🌐 carte sur internet</div>
+					</td>
+				</tr>
+				</tbody>
+			  </table>
+		</div>
+	</div>
 </div>
 
 <div id="droite">
 	<div id="identite"></div>
-		<table style="border-collapse: collapse; width:590px;">
-		<tbody>	<tr>
-		<td style="width: 40px; color: darkgreen; text-align: center; font-size: 40px;">&#x2777;</td>
-		<td style="padding-top: 17px; padding-left: 5px;"><h3 align="left">..., puis, renseignez les éléments d'identité...</h3></td>
-		</tr></tbody>
-		</table>
-		
-		&#x270B; <font style="color:#b75800;"><b>Complétez les éléments d'identité</b> en votre possession :</font><br>
-		<ul><li>Seules <b>les informations des cases complétées apparaitront.</b></li>
-		<li>Les cases <b>colorées</b> doivent, parfois, être obligatoirement remplies.</li>
-		<li>Il peut être nécessaire d'<b>effacer une case complétée pour la référence précédente.</b></li>
-		<li><i>Passez la souris sur les cases pour avoir des indications</i></li></ul>
 	
-	<!-- -->
-	<div style="background-color:darkgreen;">
-	<table style="border-collapse: collapse; width:595px;" cellpadding="4;">
-	<tbody><tr>
-	<td style="color:#fff; font-size: 24px;"><b>Identité du document :</b> </td>
-	<td style="text-align:right;"><input value="Effacer les cases ! &#x274E;" type="reset"></td>
+	<!-- ÉTAPE 2 : Encadré avec coins arrondis -->
+	<div class="etape-encadre">
+		<div class="etape-titre">
+			<span class="etape-numero">2</span>
+			Renseignez les éléments d'identité du document et validez !
+		</div>
+		<div class="etape-contenu">
+			<div class="info-bulle">
+				<b>✋ Informations :</b>
+				<ul style="margin:5px 0 0 20px;">
+					<li>Seules <b>les informations des cases complétées apparaîtront.</b></li>
+					<li>Les cases <b>colorées</b> doivent parfois être obligatoirement remplies.</li>
+					<li>Passez la souris sur les cases pour avoir des indications.</li>
+				</ul>
+			</div>
+					<div style="color:red">✋ <b>Vérifiez la présence et la qualité des données (orthographe, date, ...) !</b></div>
+			<br><div style="color:red">Certains <b>éléments d'identité</b> sont <b>obligatoires</b> : </div>
+			<ol><li>Des <b>alertes</b> peuvent signaler des absences non autorisées de données.</li>
+			<li>Lire l'alerte, <b>chercher et compléter ce qui manque.</b></li></ol>
+			<!-- Tableau d'identité du document (inchangé mais intégré dans l'encadré) -->
+			<div style="background-color:darkgreen;">
+				<table style="border-collapse: collapse; width:100%;" cellpadding="4;">
+					<tbody><tr>
+						<td style="color:#fff; font-size: 24px;"><b>Identité du document :</b> </td>
+						<td style="text-align:right;"><input value="Effacer les cases ! ❎" type="reset"></td>
+					</tr></tbody>
+				</table>
+				 
+				 <table style="border-collapse: collapse; width:100%;" cellpadding="4;">
+					<tbody bgcolor="#FFF8DD">
+					  <tr>  
+						<td style="background-color: #ccffcc;"><b>🎨📚🎵 Partie : </b></td>
+						<td style="padding-top: 5px; background-color: #ccffcc;"><input
+							size="17" placeholder="NOM de l'émetteur" title="Vide si l'émetteur est anonyme."
+							id="nomill"></td>
+						<td style="padding-top: 5px; background-color: #ccffcc;"><input
+							size="17" placeholder="Complément" title="Prénom, sigle, vide si l'émetteur est anonyme."
+							id="prenomill"></td>
+						<td style="background-color: #ccffcc;"> <br>
+						</td>
+					  </tr>
+					  <tr>
+						<td style="background-color: #ccffcc; font-size: 13px;"><b>illustration, chapitre, chanson</b></td>
+						<td style="padding-top: 5px; background-color: #ccffcc;"><input
+							size="17" placeholder="Titre ill. ou chapitre" id="titreill" required="required" title="Obligatoire"></td>
+						<td style="padding-top: 5px; background-color: #ccffcc;"><input
+							size="1" placeholder="JJ" id="jpublii">/<input size="1" placeholder="MM" id="mpublii">/<input size="2" placeholder="AAAA" required="required" 
+							id="apublii"></td>
+							<!--<input size="17" placeholder="Date de réalisation" id="dateill"></td>-->
+						<td style="padding-top: 5px; background-color: #ccffcc;"><input
+							size="17" placeholder="Format" title="Photogr. graph. tabl. carte ..."
+							id="formatill"></td>
+					  </tr>
+					  <tr>
+						<td><b>Émetteur(s) doc. principal</b> </td>
+						<td style="font-size: 13px;">NOM</td>
+						<td style="font-size: 13px;"><div>Complément</div><div>(Prénom, ...)</div></td>
+						<td style="font-size: 13px;">Fonction/Rôle</td>
+					  </tr>
+					  <tr>
+						<td style="font-size: 13px;">Personne/Organisme</td>
+						<td style="padding-top: 0px;"><input size="17" placeholder="Émetteur 1" 
+							title="Vide si l'émetteur est anonyme." id="nom"><br>			  			  
+						<td style="padding-top: 0px;"><input size="17" placeholder="Complément 1"
+							title="Prénom, sigle, vide si l'émetteur est anonyme." id="prenom"></td>
+						<td style="padding-top: 0px;"><input size="17" placeholder="Fonction 1"
+							id="fonct"></td>
+					  </tr>
+					  <tr>
+						<td style="font-size: 13px;">Personne/Organisme</td>
+						<td style="padding-top: 5px;"><input size="17" placeholder="Émetteur 2"
+							title="Vide si l'émetteur est anonyme." id="nom2"></td>
+						<td style="padding-top: 5px;"><input size="17" placeholder="Complément 2"
+							title="Prénom, sigle, vide si l'émetteur est anonyme." id="prenom2"></td>
+						<td style="padding-top: 5px;"><input size="17" placeholder="Fonction 2"
+							id="fonct2"></td>
+					  </tr>
+				
+					<tr>
+						<td style="font-size: 13px;"></td>
+						<td style="font-size: 13px; text-align:right;">Plus de 2 émetteurs ?</td>
+						<td style="font-size: 13px;">
+					<!-- --><select size="1" name="id" id="etalii">
+								<option value="0">Non</option>
+								<option value="1">Oui</option>
+							</select> 	
+						<td style="font-size: 13px;"></td>
+					  </tr> 
+					  <tr>
+						<td style="padding-top: 5px; background-color: #ffff33;"><b>Titre(s)</b></td>
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Titre" required="required" id="titre" title="Obligatoire"></td>
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Titre de la page web" required="required" title="Obligatoire, c'est le titre de la page à l'intérieur du site web."
+							id="titweb"></td>
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Collection" required="required" id="titcoll" title="Obligatoire"></td>
+					  </tr>
+					  <tr>
+						<td style="padding-top: 5px; background-color: #ffff33;"><br>
+						</td>
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Titre de l'article" id="titarticle" required="required" title="Obligatoire"></td>
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Titre du périodique" required="required" title="Obligatoire, ex : Science & vie junior, Le Monde..."
+							id="titperiod"></td>
+						<td style="padding-top: 5px; background-color: #ffff33;"><br>
+						</td>
+					  </tr>
+					  <tr>
+						<td style="background-color: #ffff33;"><br>
+						</td>
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Mot défini" id="def" required="required" title="Obligatoire"><br>
+						</td>
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Titre Dictionnaire" required="required" id="dico"></td>
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Titre Encyclopédie" required="required" id="encyclo"></td>
+					  </tr>
+					  <tr>
+						<td><font face="Arial, Helvetica, sans-serif"><b>Support/Format</b></font></td>
+						<td style="padding-top: 5px;"><input size="17" placeholder="Support" id="support" required="required"></td>
+						<td style="padding-top: 5px;"><input size="17" placeholder="Format(MP3)/Echelle(1:25000)" required="required"
+							title="PDF, HTML, EPUB, FLV, MP4, ..." id="forma"></td>
+						<td><br>           </td>
+					  </tr>
+					  <tr>
+						<td style="background-color: #ffff33;"><font face="Arial, Helvetica, sans-serif"><b>Editeur</b></font> </td>
+				
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Lieu d'édition" required="required" 
+							title="Pays ou ville : se trouve dans les premières ou dernières pages du livre. Sur la jaquette de la vidéo."
+							id="lieuedit"></td> 
+							
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Éditeur/Producteur" required="required" 
+							title="Se trouve sur la couverture ou dans les premières pages du livre. Sur la jaquette de la vidéo."
+							id="edit"></td>
+						<td style="padding-top: 5px; background-color: #ffff33;"><input
+							size="17" placeholder="Éditeur/Nom du site" required="required" 
+							id="editweb"></td>
+					  </tr>
+					  <tr>
+						<td><font face="Arial, Helvetica, sans-serif"><b>Date(s)</b></font> </td>
+						<td style="padding-top: 5px; font-size: 13px;  text-align:right;">de publication ou<br>de mise à jour :
+						</td>
+						<td style="padding-top: 5px; font-size: 13px;">
+						<input size="1" placeholder="JJ" id="jpubli">/<input size="1" placeholder="MM" id="mpubli">/<input size="2" placeholder="AAAA" required="required" id="apubli">
+						</td>
+						<td style="padding-top: 5px; font-size: 13px;">de consultation : <br>
+						<input size="17" placeholder="JJ/MM/AAAA" required="required" title="Obligatoire, date de la première consultation, ex : 01/11/2016" id="dateconsult"></td>
+					  </tr>
+					  <tr>
+						<td style="background-color: #ffff33;padding-top: 5px;"><font face="Arial, Helvetica, sans-serif"><b>Page(s)/Durée</b></font></td>
+						<td style="background-color: #ffff33;padding-top: 5px;">
+						<input size="12" required="required" placeholder="Pages" title="Ex : 250 ou 25 à 56, 58" id="totpages"> ou </td>
+						<td style="background-color: #ffff33;padding-top: 5px;">
+						<input size="17" required="required" placeholder="Page début à P. fin" title="Première page et dernière page de l'article ou du chapitre, ex : 12 à 23" id="qqpages"></td>
+						<td style="background-color: #ffff33;padding-top: 5px;"><input size="17" required="required" placeholder="Durée de l'œuvre" id="duree"></td>
+					  </tr>
+					  <tr>
+						<td style="padding-top: 5px;"><font face="Arial, Helvetica, sans-serif"><b>Autre</b></font></td>
+						<td style="padding-top: 5px;">
+						<input size="17" placeholder="Adresse URL du site" required="required" title="Exemple : www.lamontagne.fr" id="urlweb"></td>
+						<td style="padding-top: 5px;">
+						<input size="17" placeholder="Numéro/Volume" id="numero"></td>
+						<td style="padding-top: 5px;"><input size="17" placeholder="ISBN/EAN/Référence" title="Ex : 9782123456789" id="isbn"></td>
+					  </tr>
+					  <tr>
+						<td style="background-color: #ffff33;padding-top: 5px;">
+						<font face="Arial, Helvetica, sans-serif"><b>Abonnement esidoc</br>numérique ?</b></font></td>
+						<td style="font-size: 14px;background-color: #ffff33;padding-top: 5px;">
+							<select size="3" id="abonn">
+								<option value="0" selected>Non</option>
+								<option value="1">Scholarvox</option>
+								<option value="2">Europresse</option>
+							</select> 	
+						</td>	
+						<td style="background-color: darkgreen;padding-top: 5px; text-align: center; color:white;"><strong>Cliquez</br>pour valider !</strong></br>
+												<a href="#biblio">
+							<input class="bouton-ajout" value="▶️ Référence" onclick="Bibliographie()" type="button" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); font-weight:bold;">
+						</a><br></td>
+						<td style="background-color: darkgreen;padding-top: 5px; text-align: center; color:white;">						
+						Effacer pour une</br><b>nouvelle Bibliographie :</b><br>
+						<b>Touches Ctrl+F5 (clavier)</b>
+						<div style="text-align: center; font-size: 200%;">🚮</div>
+					</td>
+						</td>
+					  </tr>
+					</tbody>
+				  </table>  
+				<br>
+			</div>
+		</div>
+	</div>
+	
+	<!-- ÉTAPE 3 : Encadré avec coins arrondis -->
+	<div class="etape-encadre">
+		<div class="etape-titre">
+			<span class="etape-numero">3</span>
+			Bibliographie normée
+		</div>
+		<div class="etape-contenu">
+			<table style="border-collapse: collapse; width:100%;"><tbody>
+				<tr>
 
-	</tr></tbody></table>
-		 
-         <table style="border-collapse: collapse; width:595px;" cellpadding="4;">
-            <tbody bgcolor="#FFF8DD">
-              <tr>  
-                <td style="background-color: #ccffcc;"><b>&#127943;&#128218;&#127925; Partie : </b></td>
-                <td style="padding-top: 5px; background-color: #ccffcc;"><input
-                    size="17" placeholder="NOM de l'émetteur" title="Vide si l'émetteur est anonyme."
-                    id="nomill"></td>
-                <td style="padding-top: 5px; background-color: #ccffcc;"><input
-                    size="17" placeholder="Complément" title="Prénom, sigle, vide si l'émetteur est anonyme."
-                    id="prenomill"></td>
-                <td style="background-color: #ccffcc;"> <br>
-                </td>
-              </tr>
-              <tr>
-                <td style="background-color: #ccffcc; font-size: 13px;"><b>illustration, chapitre, chanson</b></td>
-                <td style="padding-top: 5px; background-color: #ccffcc;"><input
-                    size="17" placeholder="Titre ill. ou chapitre" id="titreill" required="required" title="Obligatoire"></td>
-                <td style="padding-top: 5px; background-color: #ccffcc;"><input
-                    size="1" placeholder="JJ" id="jpublii">/<input size="1" placeholder="MM" id="mpublii">/<input size="2" placeholder="AAAA" required="required" 
-					id="apublii"></td>
-					<!--<input size="17" placeholder="Date de réalisation" id="dateill"></td>-->
-                <td style="padding-top: 5px; background-color: #ccffcc;"><input
-                    size="17" placeholder="Format" title="Photogr. graph. tabl. carte ..."
-                    id="formatill"></td>
-              </tr>
-              <tr>
-                <td><b>Émetteur(s) doc. principal</b> </td>
-				<td style="font-size: 13px;">NOM</td>
-                <td style="font-size: 13px;"><div>Complément</div><div>(Prénom, ...)</div></td>
-                <td style="font-size: 13px;">Fonction/Rôle</td>
-			  </tr>
-			  <tr>
-				<td style="font-size: 13px;">Personne/Organisme</td>
-                <td style="padding-top: 0px;"><input size="17" placeholder="Émetteur 1" 
-                    title="Vide si l'émetteur est anonyme." id="nom"><br>			  			  
-                <td style="padding-top: 0px;"><input size="17" placeholder="Complément 1"
-                    title="Prénom, sigle, vide si l'émetteur est anonyme." id="prenom"></td>
-                <td style="padding-top: 0px;"><input size="17" placeholder="Fonction 1"
-                    id="fonct"></td>
-              </tr>
-              <tr>
-                <td style="font-size: 13px;">Personne/Organisme</td>
-                <td style="padding-top: 5px;"><input size="17" placeholder="Émetteur 2"
-                    title="Vide si l'émetteur est anonyme." id="nom2"></td>
-                <td style="padding-top: 5px;"><input size="17" placeholder="Complément 2"
-                    title="Prénom, sigle, vide si l'émetteur est anonyme." id="prenom2"></td>
-                <td style="padding-top: 5px;"><input size="17" placeholder="Fonction 2"
-                    id="fonct2"></td>
-              </tr>
-		
-			<tr>
-				<td style="font-size: 13px;"></td>
-				<td style="font-size: 13px; text-align:right;">Plus de 2 émetteurs ?</td>
-				<td style="font-size: 13px;">
-			<!-- --><select size="1" name="id" id="etalii">
-						<option value="0">Non</option>
-						<option value="1">Oui</option>
-					</select> 	
-				<td style="font-size: 13px;"></td>
-              </tr> 
-			  <tr>
-                <td style="padding-top: 5px; background-color: #ffff33;"><b>Titre(s)</b></td>
-                <td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Titre" required="required" id="titre" title="Obligatoire"></td>
-                <td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Titre de la page web" required="required" title="Obligatoire, c'est le titre de la page à l'intérieur du site web."
-                    id="titweb"></td>
-				<td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Collection" required="required" id="titcoll" title="Obligatoire"></td>
-              </tr>
-              <tr>
-                <td style="padding-top: 5px; background-color: #ffff33;"><br>
-                </td>
-                <td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Titre de l'article" id="titarticle" required="required" title="Obligatoire"></td>
-                <td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Titre du périodique" required="required" title="Obligatoire, ex : Science &amp; vie junior, Le Monde..."
-                    id="titperiod"></td>
-                <td style="padding-top: 5px; background-color: #ffff33;"><br>
-                </td>
-              </tr>
-              <tr>
-                <td style="background-color: #ffff33;"><br>
-                </td>
-                <td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Mot défini" id="def" required="required" title="Obligatoire"><br>
-                </td>
-                <td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Titre Dictionnaire" required="required" id="dico"></td>
-                <td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Titre Encyclopédie" required="required" id="encyclo"></td>
-              </tr>
-              <tr>
-                <td><font face="Arial, Helvetica, sans-serif"><b>Support/Format</b></font></td>
-                <td style="padding-top: 5px;"><input size="17" placeholder="Support" id="support" required="required"></td>
-                <td style="padding-top: 5px;"><input size="17" placeholder="Format(MP3)/Echelle(1:25000)" required="required"
-                    title="PDF, HTML, EPUB, FLV, MP4, ..." id="forma"></td>
-                <td><br>           </td>
-              </tr>
-              <tr>
-                <td style="background-color: #ffff33;"><font face="Arial, Helvetica, sans-serif"><b>Editeur</b></font> </td>
-		
-				<td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Lieu d'édition" required="required" 
-					title="Pays ou ville : se trouve dans les premières ou dernières pages du livre. Sur la jaquette de la vidéo."
-                    id="lieuedit"></td> 
-					
-                <td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Éditeur/Producteur" required="required" 
-					title="Se trouve sur la couverture ou dans les premières pages du livre. Sur la jaquette de la vidéo."
-                    id="edit"></td>
-                <td style="padding-top: 5px; background-color: #ffff33;"><input
-                    size="17" placeholder="Éditeur/Nom du site" required="required" 
-					id="editweb"></td>
-              </tr>
-              <tr>
-                <td><font face="Arial, Helvetica, sans-serif"><b>Date(s)</b></font> </td>
-                <td style="padding-top: 5px; font-size: 13px;  text-align:right;">de publication ou<br>de mise à jour :
-                </td>
-                <td style="padding-top: 5px; font-size: 13px;">
-				<input size="1" placeholder="JJ" id="jpubli">/<input size="1" placeholder="MM" id="mpubli">/<input size="2" placeholder="AAAA" required="required" id="apubli">
-				</td>
-                <td style="padding-top: 5px; font-size: 13px;">de consultation : </br>
-				<input size="17" placeholder="JJ/MM/AAAA" required="required" title="Obligatoire, date de la première consultation, ex : 01/11/2016" id="dateconsult"></td>
-              </tr>
-              <tr>
-                <td style="background-color: #ffff33;padding-top: 5px;"><font face="Arial, Helvetica, sans-serif"><b>Page(s)/Durée</b></font></td>
-                <td style="background-color: #ffff33;padding-top: 5px;">
-				<input size="12" required="required" placeholder="Pages" title="Ex : 250 ou 25 à 56, 58" id="totpages"> ou </td>
-                <td style="background-color: #ffff33;padding-top: 5px;">
-				<input size="17" required="required" placeholder="Page début à P. fin" title="Première page et dernière page de l'article ou du chapitre, ex : 12 à 23" id="qqpages"></td>
-                <td style="background-color: #ffff33;padding-top: 5px;"><input size="17" required="required" placeholder="Durée de l'oeuvre" id="duree"></td>
-              </tr>
-              <tr>
-                <td style="padding-top: 5px;"><font face="Arial, Helvetica, sans-serif"><b>Autre</b></font></td>
-                <td style="padding-top: 5px;">
-				<input size="17" placeholder="Adresse URL du site" required="required" title="Exemple : www.lamontagne.fr" id="urlweb"></td>
-                <td style="padding-top: 5px;">
-				<input size="17" placeholder="Numéro/Volume" id="numero"></td>
-                <td style="padding-top: 5px;"><input size="17" placeholder="ISBN/EAN/Référence" title="Ex : 9782123456789" id="isbn"></td>
-              </tr>
-			  <tr>
-				<td style="background-color: #ffff33;padding-top: 5px;">
-				<font face="Arial, Helvetica, sans-serif"><b>Abonnement esidoc</br>numérique ?</b></font></td>
-				<td style="font-size: 14px;background-color: #ffff33;padding-top: 5px;">
-					<select size="3" id="abonn">
-						<option value="0" selected>Non</option>
-						<option value="1">Scholarvox</option>
-						<option value="2">Europresse</option>
-					</select> 	
-				</td>	
-				<td style="background-color: darkgreen;padding-top: 5px;"></td>
-				<td style="background-color: darkgreen;padding-top: 5px;"></td>
-			  </tr>
+				</tr>
+			</tbody></table>
 
-            </tbody>
-          </table>  
-		<br></div>
-		
-		<table style="border-collapse: collapse; width: 590px;"><tbody><tr>
-		<td style="width: 40px; color: darkgreen; text-align: center; font-size: 40px;">&#x2778;</td>
-		<td style="padding-top: 17px; padding-left: 5px;"><h3 align="left">... ensuite, lancez la construction de la Bibliographie normée...</h3></td>
-		</tr></tbody></table>
-		<table  style="border-collapse: collapse; width:590px;"><tbody>
-			<tr>
-			<td style="text-align: center; width: 60%;" bgcolor="LightGreen">
-			<b>Bibliographie en cours,<br> cliquer sur le bouton :</b><br><br>
-			<a href="#biblio">
-			<input value="&#x2705; Ajouter la référence" onclick="Bibliographie()" type="button"></a><br>
-			</td>
-			<td style="text-align: center; width: 40%;">
-			Effacer pour une <b>nouvelle Bibliographie :</b><br>
-			  <b>Touches Ctrl+F5 (clavier)</b>
-			  <div style="text-align: center; font-size: 200%;">&#x1F6AE;</div>
-			 </td>
-			</tr>
-		   </tbody>
-		</table>
-		<br>
-        <div style="color:red">&#x270B; <b>Vérifiez la présence et la qualité des données (orthographe, date, ...) !</b></div>
-        <br><div style="color:red">Certains <b>éléments d'identité</b> sont <b>obligatoires</b> : </div>
-			  <ol><li>Des <b>alertes</b> peuvent signaler des absences non autorisées de données.</li>
-			  <li>Lire l'alerte, <b>chercher et compléter ce qui manque.</b></li></ol>
-		 
-<div id="bib">
-	<a id="biblio"></a>
-		  <!-- Affichage de la Ref Biblio  -->
-		  <h3 align="center"><b>Bibliographie :</b></h3>
-		  <b style="color: maroon;">Livre(s) :</b><br>
-		  <div id="bibliv"></div>
-		  <div id="bibliva"></div>
-		  <br><b style="color: maroon;">Article(s) de périodique(s) :</b><br>
-		  <div id="bibper"></div>
-		  <div id="bibpera"></div>
-		  <br><b style="color: maroon;">Document(s) de référence(s) :</b><br>
-		  <div id="bibdocref"></div>
-		  <div id="bibdocrefa"></div>
-		  <br><b style="color: maroon;">Page(s) internet :</b><br>
-		  <div id="bibweb"></div>
-		  <div id="bibweba"></div>
-		  <br><b style="color: maroon;">Illustration(s) :</b><br>
-		  <div id="bibill"></div>
-		  <div id="bibilla"></div>
-		  <br><b style="color: maroon;">Vidéo(s) :</b><br>
-		  <div id="bibvid"></div>
-		  <div id="bibvida"></div>
-		  <br><b style="color: maroon;">Chanson(s) / Musique(s) :</b><br>
-		  <div id="bibmus"></div>
-		  <div id="bibmusa"></div>
-		  <br><b style="color: maroon;">Interview(s) / Rencontre(s) / Podcast(s) :</b><br>
-		  <div id="bibinter"></div>
-		  <div id="bibintera"></div>
-		  <br><b style="color: maroon;">Carte(s) :</b><br>
-		  <div id="bibcarte"></div>
-		  <div id="bibcarta"></div>	  
-</div>
-<br>
-&#x270B; <font style="color:#b75800;"><b>Rangement des références :</b></font>
-<ol><li>Tri par support, puis, pour chaque support =</li>
-<li>Documents sans auteur triés par titre (premier mot significatif)</li>
-<li>Documents avec auteur triès par nom d'auteur</li>
-<li>Documents avec même auteur triès par date de publication (plus récent en premier)</li>
-</ol>
-	<table style="border-collapse: collapse; width:100%;"><tbody><tr>
-	<td style="width: 40px; color: darkgreen; text-align: center; font-size: 40px;">&#x2779;</td>
-	<td style="padding-top: 17px; padding-left: 5px;"><h3 align="left">..., enfin, une fois que toutes les références ont été saisies, copiez la Bilbliographie et collez-là dans un Traitement de Texte !</h3></td>
-	</tr></tbody> </table>
-<div style="color:red">&#x270B; <b>Il n'est pas possible d'enregistrer pour continuer plus tard ! </b></div>
-<div>Par conséquent, <b>créer les références supplémentaires séparément</b> et les copier/coller individuellement 
-(au bon emplacement) dans le Traitement de texte.</div>
-<div><b>Penser à adpater la police de caractère au reste de votre travail.</b></div>	
+			<div class="info-bulle">
+				<b>✋ Rangement des références :</b>
+				<ol>
+					<li>Tri par support, puis, pour chaque support =</li>
+					<li>Documents sans auteur triés par titre (premier mot significatif)</li>
+					<li>Documents avec auteur triés par nom d'auteur</li>
+					<li>Documents avec même auteur triés par date de publication (plus récent en premier)</li>
+				</ol>
+			</div>	
+			
+			<!-- Affichage de la bibliographie DÉPLACÉ ICI -->
+			<div id="bib">
+				<a id="biblio"></a>
+				<h3 align="center"><b>Bibliographie :</b></h3>
+				<b style="color: maroon;">Livre(s) :</b><br>
+				<div id="bibliv"></div>
+				<div id="bibliva"></div>
+				<br><b style="color: maroon;">Article(s) de périodique(s) :</b><br>
+				<div id="bibper"></div>
+				<div id="bibpera"></div>
+				<br><b style="color: maroon;">Document(s) de référence(s) :</b><br>
+				<div id="bibdocref"></div>
+				<div id="bibdocrefa"></div>
+				<br><b style="color: maroon;">Page(s) internet :</b><br>
+				<div id="bibweb"></div>
+				<div id="bibweba"></div>
+				<br><b style="color: maroon;">Illustration(s) :</b><br>
+				<div id="bibill"></div>
+				<div id="bibilla"></div>
+				<br><b style="color: maroon;">Vidéo(s) :</b><br>
+				<div id="bibvid"></div>
+				<div id="bibvida"></div>
+				<br><b style="color: maroon;">Chanson(s) / Musique(s) :</b><br>
+				<div id="bibmus"></div>
+				<div id="bibmusa"></div>
+				<br><b style="color: maroon;">Interview(s) / Rencontre(s) / Podcast(s) :</b><br>
+				<div id="bibinter"></div>
+				<div id="bibintera"></div>
+				<br><b style="color: maroon;">Carte(s) :</b><br>
+				<div id="bibcarte"></div>
+				<div id="bibcarta"></div>	  
+			</div>
+
+
+		</div>
+	</div>
+	
+	
+	<!-- ÉTAPE 4 : Encadré avec coins arrondis -->
+	<div class="etape-encadre">
+		<div class="etape-titre">
+			<span class="etape-numero">4</span>
+			Copiez la Bibliographie dans un Traitement de Texte
+		</div>
+		<div class="etape-contenu">
+			<div style="color:red">✋ <b>Il n'est pas possible d'enregistrer pour continuer plus tard !</b></div>
+			<div>Par conséquent, <b>créez les références supplémentaires séparément</b> et copiez/collez-les individuellement 
+			(au bon emplacement) dans le traitement de texte.</div>
+			<div><b>Pensez à adapter la police de caractère au reste de votre travail.</b></div>
+		</div>
+	</div>
 	
 	<table style="border-collapse: collapse; width:550px;" cellpadding="7;"><tbody><tr><td>
-    &#x1F449; <i>Générateur réalisé par J-F D, professeur-documentaliste, Lycée Agricole du
-    Bourbonnais, Moulins, à partir de l'outil mis à disposition par Claire Cassagne,
-    professeur-documentaliste dans l'académie de Paris.<br>
-
-    </i></td></tr></tbody>
+		👉 <i>Générateur réalisé par J-F D, professeur-documentaliste, Lycée Agricole du
+		Bourbonnais, Moulins, à partir de l'outil mis à disposition par Claire Cassagne,
+		professeure-documentaliste dans l'académie de Paris.<br>
+		</i></td></tr></tbody>
 	</table>
  </form> 
 </div>
+
 
 <div id="modele">
 <h2 style="color: darkgreen; text-align: center;">Modèles et exemples de Références Bibliographiques :</h2>
