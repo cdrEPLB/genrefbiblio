@@ -115,6 +115,13 @@
 		}
 		
 		/* Améliorations visuelles */
+		
+		input { 		/* Arrondir les bords de toutes les cases de saisie */
+			border-radius: 10px;
+			padding: 6px 8px;
+			border: 1px solid #ccc;
+		}
+		
 		table {
 			border-collapse: collapse;
 		}
@@ -2597,7 +2604,7 @@ window.onload = function() {
 
 	<table style="border-collapse: collapse; width:590px;" cellpadding="4;"><tbody><tr><td>
         <h2 style="">Réaliser une Bibliographie en 4 étapes</h2>
-		<div align="center"><i>Version du 22/02/2026</i></div>
+		<div align="center"><i>Version du 02/03/2026</i></div>
 		<div align="center">Outil testé sous Firefox et Chrome</div>
 		</td></tr></tbody></table>
 		<br>
@@ -3260,7 +3267,7 @@ window.onload = function() {
 					  </tr>
 					  <tr>
 						<td style="background-color: #ffff33;padding-top: 5px;">
-						<font face="Arial, Helvetica, sans-serif"><b>Abonnement esidoc</br>numérique ?</b></font></td>
+						<font face="Arial, Helvetica, sans-serif"><b>🌐📰📚 Provenance abonnements numériques <span style="color:red;">esidoc ?</span></b></font></td>
 						<td style="font-size: 14px;background-color: #ffff33;padding-top: 5px;">
 							<select size="3" id="abonn">
 								<option value="0" selected>Non</option>
@@ -3268,7 +3275,7 @@ window.onload = function() {
 								<option value="2">Europresse</option>
 							</select> 	
 						</td>	
-						<td style="background-color: darkgreen;padding-top: 5px; text-align: center; color:white;"><strong>Cliquez</br>pour valider !</strong></br>
+						<td style="background-color: darkgreen;padding-top: 5px; text-align: center; color:white;"><strong>Cliquer</br>pour valider !</strong></br>
 												<a href="#biblio">
 							<input class="bouton-ajout" value="▶️ Référence" onclick="Bibliographie()" type="button" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); font-weight:bold;">
 						</a><br></td>
